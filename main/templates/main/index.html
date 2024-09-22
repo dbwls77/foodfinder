@@ -1,12 +1,74 @@
-<!-- main/templates/main/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Hello! Welcome to the Atlanta Food Finder</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Styling the body */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4; /* Light gray background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+            margin: 0;
+        }
+
+        /* Main container */
+        .container {
+            background-color: #ffffff; /* White background */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            max-width: 600px;
+            text-align: center; /* Center the text */
+        }
+
+        /* Styling the heading */
+        h1 {
+            color: #333333; /* Dark gray */
+            margin-bottom: 20px;
+        }
+
+        /* Styling the paragraph */
+        p {
+            color: #666666; /* Lighter gray */
+            margin-bottom: 15px;
+            line-height: 1.6; /* Line height for readability */
+        }
+
+        /* Button styling */
+        .btn {
+            display: inline-block;
+            background-color: #007bff; /* Blue background */
+            color: #ffffff; /* White text */
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Button hover effect */
+        .btn:hover {
+            background-color: #0056b3; /* Darker blue */
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to Atlanta Food Finder</h1>
-    <p>This is just some basic text and will be updated soon</p>
+    <div class="container">
+        <h1>Welcome to Atlanta Food Finder</h1>
+        <p>This is just some basic text and will be updated soon.</p>
+        <p>Find the best restaurants in Atlanta!</p>
+        <a href="#" class="btn">Get Started</a>
+    </div>
 </body>
 </html>
