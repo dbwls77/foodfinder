@@ -23,4 +23,7 @@ def about(request):
 def map_view(request):
     return render(request, 'main/map.html')  # Render the new map template
 
+def contact(request):
+    return render(request, 'main/contact.html')
+
 
