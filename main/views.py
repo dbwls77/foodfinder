@@ -17,4 +17,7 @@ def register(request):
         form = UserRegisterForm()
     return render(request, 'main/register.html', {'form': form})
 
+def about(request):
+    return render(request, 'main/about.html')
+
 

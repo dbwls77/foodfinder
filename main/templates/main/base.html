@@ -1,0 +1,12 @@
+<!-- templates/base.html -->
+<nav>
+    <a href="{% url 'index' %}">Home</a>
+    <a href="{% url 'register' %}">Register</a>
+    <a href="{% url 'about' %}">About</a>  <!-- About link -->
+</nav>
+
+<!-- Include a block for page content -->
+<div>
+    {% block content %}
+    {% endblock %}
+</div>

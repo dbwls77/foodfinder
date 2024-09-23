@@ -1,0 +1,51 @@
+<!-- main/templates/main/about.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About Us</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        .container h2 {
+            margin-bottom: 20px;
+        }
+        nav {
+            margin-top: 20px;
+            text-align: center;
+        }
+        nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>About Us</h2>
+        <p>Welcome to the About page! Here, you can learn more about our application and its features.</p>
+        <nav>
+            <a href="{% url 'index' %}">Home</a>
+            <a href="{% url 'register' %}">Register</a>
+            <a href="{% url 'about' %}">About</a>
+        </nav>
+    </div>
+</body>
+</html>
+
