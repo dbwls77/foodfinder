@@ -12,7 +12,9 @@ The Atlanta Food Finder is a web application designed to help residents of Atlan
 ## Technologies 
 Backend framework: Django 
 
-Frontend: Figma
+Frontend: HTML, CSS
+
+Tools: Figma
 
 Database: PostgresSQL 
 
