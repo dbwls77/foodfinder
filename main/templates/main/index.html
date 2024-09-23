@@ -95,12 +95,30 @@
             color: #ffffff; /* White text */
         }
     </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlkqLV5Szqua_fdhTXBSJ-QJfAmukjQac&callback=initMap" async defer></script>
+    <script>
+        function initMap() {
+            // Set the location for Atlanta
+            const atlanta = { lat: 33.7490, lng: -84.3880 };
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 12,
+                center: atlanta,
+            });
+            const marker = new google.maps.Marker({
+                position: atlanta,
+                map: map,
+            });
+
+            // Show the map div
+            document.getElementById("map").style.display = "block";
+        }
+    </script>
 </head>
 <body>
     <div class="hero">
         <nav class="navbar">
             <a href="{% url 'about' %}">About</a>
-            <a href="{% url 'index' %}">Explore with Maps!</a>
+            <a href="{% url 'map' %}" class="btn">Explore Now</a> <!-- Link to the map view -->
             <a href="{% url 'register' %}">Register!</a>
             <a href="#">Contact</a>
             <a href="#" class="cta">More Information!</a> <!-- Call-to-action button -->
@@ -108,8 +126,10 @@
         <div class="hero-text">
             <h1>Welcome to Atlanta Food Finder</h1>
             <p>Discover the best restaurants in Atlanta.</p>
-            <a href="#" class="btn">Explore Now</a> <!-- Call-to-action button -->
+            <a href="map.html" class="btn">Explore Now</a> <!-- Redirect to the map page -->
         </div>
     </div>
+    <div id="map" style="height: 500px; width: 100%; display: none;"></div> <!-- Map container -->
 </body>
 </html>
+

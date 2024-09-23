@@ -20,4 +20,7 @@ def register(request):
 def about(request):
     return render(request, 'main/about.html')
 
+def map_view(request):
+    return render(request, 'main/map.html')  # Render the new map template
+
 

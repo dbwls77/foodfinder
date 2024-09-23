@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map of Atlanta</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlkqLV5Szqua_fdhTXBSJ-QJfAmukjQac&callback=initMap" async defer></script>
+    <script>
+        function initMap() {
+            const atlanta = { lat: 33.7490, lng: -84.3880 };
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 12,
+                center: atlanta,
+            });
+            const marker = new google.maps.Marker({
+                position: atlanta,
+                map: map,
+            });
+        }
+    </script>
+    <style>
+        #map {
+            height: 100vh;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+</body>
+</html>
