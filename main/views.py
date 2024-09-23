@@ -26,4 +26,7 @@ def map_view(request):
 def contact(request):
     return render(request, 'main/contact.html')
 
+def favorites(request):
+    return render(request, 'main/favorites.html') #Renders the favorites tab
+
 
