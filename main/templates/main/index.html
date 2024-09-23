@@ -2,73 +2,115 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Hello! Welcome to the Atlanta Food Finder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atlanta Food Finder</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your external CSS file -->
+    <!-- Add a Google Font for modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Basic Reset */
-        * {
+        /* Internal CSS for now, move to styles.css later */
+        body, html {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif; /* Modern font */
+            color: #ffffff; /* White text for contrast */
         }
 
-        /* Styling the body */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4; /* Light gray background */
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        /* Full-width background image */
+        .hero {
+            background: url('https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Zm9vZHxlbnwwfHwwfHx8MA%3D%3D') no-repeat center center/cover;
             height: 100vh; /* Full viewport height */
-            margin: 0;
+            position: relative;
         }
 
-        /* Main container */
-        .container {
-            background-color: #ffffff; /* White background */
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-            max-width: 600px;
-            text-align: center; /* Center the text */
+        /* Transparent navigation bar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            position: absolute; /* Position it over the image */
+            width: 100%;
+            top: 0;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
         }
 
-        /* Styling the heading */
-        h1 {
-            color: #333333; /* Dark gray */
-            margin-bottom: 20px;
-        }
-
-        /* Styling the paragraph */
-        p {
-            color: #666666; /* Lighter gray */
-            margin-bottom: 15px;
-            line-height: 1.6; /* Line height for readability */
-        }
-
-        /* Button styling */
-        .btn {
-            display: inline-block;
-            background-color: #007bff; /* Blue background */
+        .navbar a {
             color: #ffffff; /* White text */
-            padding: 10px 20px;
             text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
+            margin: 0 15px;
+            font-weight: 500;
         }
 
-        /* Button hover effect */
-        .btn:hover {
-            background-color: #0056b3; /* Darker blue */
+        .navbar a:hover {
+            color: #ffcc00; /* Highlight color on hover */
+        }
+
+        .navbar .cta {
+            border: 2px solid #ffffff; /* Border for the call-to-action button */
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .navbar .cta:hover {
+            background: #ffcc00; /* Yellow background on hover */
+            color: #000000; /* Black text */
+        }
+
+        /* Text overlay on the hero image */
+        .hero-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .hero-text h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px; /* Space between letters */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Text shadow for contrast */
+        }
+
+        .hero-text p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero-text .btn {
+            display: inline-block;
+            background-color: #ffffff; /* White background */
+            color: #333333; /* Dark text */
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 30px;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .hero-text .btn:hover {
+            background-color: #333333; /* Dark background */
+            color: #ffffff; /* White text */
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to Atlanta Food Finder</h1>
-        <p>This is just some basic text and will be updated soon.</p>
-        <p>Find the best restaurants in Atlanta!</p>
-        <a href="#" class="btn">Get Started</a>
+    <div class="hero">
+        <nav class="navbar">
+            <a href="#">About</a>
+            <a href="#">Explore with Maps!</a>
+            <a href="#">Register!</a>
+            <a href="#">Contact</a>
+            <a href="#" class="cta">More Information!</a> <!-- Call-to-action button -->
+        </nav>
+        <div class="hero-text">
+            <h1>Welcome to Atlanta Food Finder</h1>
+            <p>Discover the best restaurants in Atlanta.</p>
+            <a href="#" class="btn">Explore Now</a> <!-- Call-to-action button -->
+        </div>
     </div>
 </body>
 </html>
