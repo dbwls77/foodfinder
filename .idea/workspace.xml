@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="48887b8a-8b5b-4d5f-9824-cbe7d6b39431" name="Changes" comment="basic welcome homepage">
       <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_9_25_2024_4_07_PM_[Changes]/ACT" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_9_25_2024_4_07_PM_[Changes]/ACT1" afterDir="false" />
@@ -18492,6 +18493,11 @@
       <change beforePath="$PROJECT_DIR$/venv/lib/python3.11/site-packages/sqlparse/tokens.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/site-packages/sqlparse/tokens.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/lib/python3.11/site-packages/sqlparse/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/myenv/Lib/site-packages/sqlparse/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/pyvenv.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/venv/pyvenv.cfg" afterDir="false" />
+=======
+    <list default="true" id="48887b8a-8b5b-4d5f-9824-cbe7d6b39431" name="Changes" comment="favorites tab html">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/templates/main/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/main/index.html" afterDir="false" />
+>>>>>>> 20b3bef1eee5a8f1fc741a793693dd273d94aca2
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18505,6 +18511,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -18517,12 +18524,21 @@
     &quot;assignee&quot;: &quot;dbwls77&quot;
   }
 }</component>
+<<<<<<< HEAD
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/dbwls77/cs2340&quot;,
     &quot;accountId&quot;: &quot;7f446697-620c-4e34-a571-831d2c380c63&quot;
   }
 }</component>
+=======
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/dbwls77/foodfinder.git",
+    "accountId": "a6f5b79e-ed90-4094-91ea-bf17783e2124"
+  }
+}]]></component>
+>>>>>>> 20b3bef1eee5a8f1fc741a793693dd273d94aca2
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -18532,6 +18548,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Django Server.Django Development.executor&quot;: &quot;Run&quot;,
@@ -18547,6 +18564,19 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+=======
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+>>>>>>> 20b3bef1eee5a8f1fc741a793693dd273d94aca2
   }
 }</component>
   <component name="RunManager" selected="Django Server.foodfinder">
@@ -18636,14 +18666,42 @@
       <option name="project" value="LOCAL" />
       <updated>1726855249659</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="basic welcome homepage">
+      <option name="closed" value="true" />
+      <created>1727061286478</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1727061286478</updated>
+    </task>
+    <task id="LOCAL-00003" summary="favorites tab html">
+      <option name="closed" value="true" />
+      <created>1727062649026</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1727062649026</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="basic welcome homepage" />
-    <option name="LAST_COMMIT_MESSAGE" value="basic welcome homepage" />
+    <MESSAGE value="favorites tab html" />
+    <option name="LAST_COMMIT_MESSAGE" value="favorites tab html" />
   </component>
 </project>
