@@ -6,7 +6,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #f4c2c2;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -18,11 +18,13 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
+            max-width: 800px;
             width: 100%;
+            text-align: center;
         }
         .container h2 {
             margin-bottom: 20px;
+            font-size: 40px;
         }
         nav {
             margin-top: 20px;
@@ -37,14 +39,20 @@
 </head>
 <body>
     <div class="container">
-        <h2>Contact Us</h2>
-        <p>Team 45: This will be updated soon with other details!</p>
-        <nav>
+               <nav>
             <a href="{% url 'index' %}">Home</a>
             <a href="{% url 'register' %}">Register</a>
             <a href="{% url 'about' %}">About</a>
-            <a href="{% url 'contact' %}">Contact</a>
         </nav>
+        <h2>CONTACT US</h2>
+        <p>If you have any other further concerns or questions, please feel free to contact us!</p>
+        <ul>
+            <p>Email: foodfinder@team45.com</p>
+            <p>Phone: +123 456 7890</p>
+            <p>Check out our portfolio:</p>
+            <a href="https://twitter.com/team45" target="_blank">Twitter</a>
+            <a href="https://facebook.com/team45" target="_blank">Facebook</a>
+        </ul>
     </div>
 </body>
 </html>

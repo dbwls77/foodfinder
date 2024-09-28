@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #f4c2c2;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -19,11 +19,13 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
+            max-width: 800px;
             width: 100%;
+            text-align: center;
         }
         .container h2 {
             margin-bottom: 20px;
+            font-size: 40px;
         }
         nav {
             margin-top: 20px;
@@ -38,13 +40,14 @@
 </head>
 <body>
     <div class="container">
-        <h2>About Us</h2>
-        <p>Welcome to the About page! Here, you can learn more about our application and its features.</p>
         <nav>
             <a href="{% url 'index' %}">Home</a>
             <a href="{% url 'register' %}">Register</a>
-            <a href="{% url 'about' %}">About</a>
+            <a href="{% url 'contact' %}">Contact</a>
         </nav>
+        <h2>About Us</h2>
+        <p>Welcome to the About page! Here, you can learn more about our application and its features.</p>
+
     </div>
 </body>
 </html>
