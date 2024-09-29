@@ -58,6 +58,35 @@
             color: #000000; /* Black text */
         }
 
+        /* Search Section in Navbar */
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-container input {
+            padding: 8px;
+            border: 2px solid #ffffff;
+            border-radius: 20px;
+            outline: none;
+            margin-right: 10px;
+            width: 200px; /* Adjust width as needed */
+        }
+
+        .search-container button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 20px;
+            background: #000000; /* Yellow background */
+            color: #ffffff;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .search-container button:hover {
+            background: #808080; /* Change color on hover */
+        }
+
         /* Text overlay on the hero image */
         .hero-text {
             position: absolute;
@@ -139,18 +168,25 @@
     <div class="hero">
         <nav class="navbar">
             <a href="{% url 'about' %}">ABOUT</a>
-            <a href="{% url 'map' %}" class="btn">EXPLORE NOW</a> <!-- Link to the map view -->
+            <a href="{% url 'map' %}" class="btn">EXPLORE NOW</a>
             <a href="{% url 'register' %}">REGISTER</a>
             <a href="{% url 'contact' %}">CONTACT US</a>
             <a href="{% url 'favorites' %}">FAVORITES</a>
-            <a href="#" class="cta">MORE INFORMATION</a> <!-- Call-to-action button -->
+            <a href="#" class="cta">MORE INFORMATION</a>
+
+            <!-- Search Section -->
+            <div class="search-container">
+                <input type="text" placeholder="Search...">
+                <button type="button">Search</button>
+            </div>
         </nav>
         <div class="hero-text">
             <h1>Welcome to Atlanta Food Finder</h1>
             <p>Discover the best restaurants in Atlanta.</p>
-            <a href="map.html" class="btn">Explore Now</a> <!-- Redirect to the map page -->
+            <a href="map.html" class="btn">Explore Now</a>
         </div>
     </div>
+
     <div id="map" style="height: 500px; width: 100%; display: none;"></div> <!-- Map container -->
 </body>
 </html>
