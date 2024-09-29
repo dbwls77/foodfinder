@@ -17,7 +17,7 @@
 
         /* Full-width background image */
         .hero {
-            background: url('https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Zm9vZHxlbnwwfHwwfHx8MA%3D%3D') no-repeat center center/cover;
+            background: url('https://t4.ftcdn.net/jpg/02/92/20/37/360_F_292203735_CSsyqyS6A4Z9Czd4Msf7qZEhoxjpzZl1.jpg') no-repeat center center/cover;
             height: 100vh; /* Full viewport height */
             position: relative;
         }
@@ -27,17 +27,18 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 40px;
+            padding: 10px 20px;
             position: absolute; /* Position it over the image */
             width: 100%;
             top: 0;
             background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            flex-wrap: wrap; /* Allow the items to wrap if needed */
         }
 
         .navbar a {
             color: #ffffff; /* White text */
             text-decoration: none;
-            margin: 0 15px;
+            margin: 0 10px; /* Reduced margin to fit more items */
             font-weight: 500;
         }
 
@@ -47,7 +48,7 @@
 
         .navbar .cta {
             border: 2px solid #ffffff; /* Border for the call-to-action button */
-            padding: 10px 20px;
+            padding: 10px 15px; /* Reduced padding to make the button smaller */
             border-radius: 25px;
             transition: background 0.3s ease, color 0.3s ease;
         }
@@ -94,6 +95,26 @@
             background-color: #333333; /* Dark background */
             color: #ffffff; /* White text */
         }
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column; /* Stack the navigation items on small screens */
+                align-items: flex-start;
+            }
+
+            .navbar a {
+                margin: 10px 0; /* More margin for stacked items */
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-text p {
+                font-size: 1.2rem;
+            }
+        }
     </style>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlkqLV5Szqua_fdhTXBSJ-QJfAmukjQac&callback=initMap" async defer></script>
     <script>
@@ -117,12 +138,12 @@
 <body>
     <div class="hero">
         <nav class="navbar">
-            <a href="{% url 'about' %}">About</a>
-            <a href="{% url 'map' %}" class="btn">Explore Now</a> <!-- Link to the map view -->
-            <a href="{% url 'register' %}">Register!</a>
-            <a href="{% url 'contact' %}">Contact</a>
-            <a href="{% url 'favorites' %}">Favorites</a>
-            <a href="#" class="cta">More Information!</a> <!-- Call-to-action button -->
+            <a href="{% url 'about' %}">ABOUT</a>
+            <a href="{% url 'map' %}" class="btn">EXPLORE NOW</a> <!-- Link to the map view -->
+            <a href="{% url 'register' %}">REGISTER</a>
+            <a href="{% url 'contact' %}">CONTACT US</a>
+            <a href="{% url 'favorites' %}">FAVORITES</a>
+            <a href="#" class="cta">MORE INFORMATION</a> <!-- Call-to-action button -->
         </nav>
         <div class="hero-text">
             <h1>Welcome to Atlanta Food Finder</h1>
@@ -133,4 +154,3 @@
     <div id="map" style="height: 500px; width: 100%; display: none;"></div> <!-- Map container -->
 </body>
 </html>
-
