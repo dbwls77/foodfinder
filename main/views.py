@@ -2,6 +2,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from .forms import UserRegisterForm
+from .models import Restaurant
 
 def index(request):
     return render(request, 'main/index.html')
@@ -21,7 +22,8 @@ def about(request):
     return render(request, 'main/about.html')
 
 def map_view(request):
-    return render(request, 'main/map.html')  # Render the new map template
+    restaurants = Restaurant.objects.all()  # Get all restaurant data
+    return render(request, 'main/map.html', {'restaurants': restaurants})
 
 def contact(request):
     return render(request, 'main/contact.html')

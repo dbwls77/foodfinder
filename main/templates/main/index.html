@@ -4,133 +4,150 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atlanta Food Finder</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to your external CSS file -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- New and bold font combination -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
     <style>
-        /* Internal CSS for now, move to styles.css later */
-        body, html {
+        /* Apply a black theme with new text styles and a green navbar */
+
+        * {
             margin: 0;
             padding: 0;
-            font-family: 'Roboto', sans-serif; /* Modern font */
-            color: #ffffff; /* White text for contrast */
+            box-sizing: border-box;
         }
 
-        /* Full-width background image */
-        .hero {
-            background: url('https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Zm9vZHxlbnwwfHwwfHx8MA%3D%3D') no-repeat center center/cover;
-            height: 100vh; /* Full viewport height */
-            position: relative;
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #f1f1f1;
+            background-color: #000000; /* Fully black background */
         }
 
-        /* Transparent navigation bar */
+        /* Navigation Bar */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 40px;
-            position: absolute; /* Position it over the image */
+            padding: 20px 50px;
+            background-color: #2ECC71; /* Cool green nav bar */
+            transition: background-color 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Add shadow for depth */
+            position: fixed;
             width: 100%;
             top: 0;
-            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            z-index: 1000;
         }
 
-        .navbar a {
-            color: #ffffff; /* White text */
+        .navbar ul {
+            list-style-type: none;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin: 0 20px;
+        }
+
+        .navbar ul li a {
             text-decoration: none;
-            margin: 0 15px;
+            color: #f1f1f1;
             font-weight: 500;
-        }
-
-        .navbar a:hover {
-            color: #ffcc00; /* Highlight color on hover */
-        }
-
-        .navbar .cta {
-            border: 2px solid #ffffff; /* Border for the call-to-action button */
+            transition: color 0.3s ease, background-color 0.3s ease;
             padding: 10px 20px;
-            border-radius: 25px;
-            transition: background 0.3s ease, color 0.3s ease;
+            border-radius: 20px;
         }
 
-        .navbar .cta:hover {
-            background: #ffcc00; /* Yellow background on hover */
-            color: #000000; /* Black text */
+        .navbar ul li a:hover {
+            background-color: #27AE60; /* Darker green hover effect */
+            color: #000000; /* Black text on hover */
         }
 
-        /* Text overlay on the hero image */
-        .hero-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-        }
-
-        .hero-text h1 {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            letter-spacing: 2px; /* Space between letters */
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Text shadow for contrast */
-        }
-
-        .hero-text p {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-        }
-
-        .hero-text .btn {
-            display: inline-block;
-            background-color: #ffffff; /* White background */
-            color: #333333; /* Dark text */
-            padding: 15px 30px;
+        .cta {
             text-decoration: none;
-            font-weight: bold;
-            border-radius: 30px;
-            transition: background 0.3s ease, color 0.3s ease;
+            padding: 10px 25px;
+            background-color: #27AE60; /* Dark green button */
+            color: #f1f1f1;
+            border-radius: 25px;
+            transition: background-color 0.3s ease;
         }
 
-        .hero-text .btn:hover {
-            background-color: #333333; /* Dark background */
-            color: #ffffff; /* White text */
+        .cta:hover {
+            background-color: #229954; /* More vibrant hover effect */
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(to bottom right, #000000, #222222); /* Black gradient background */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #2ECC71; /* Green for the main header */
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .hero p {
+            font-size: 1.6rem;
+            margin-bottom: 30px;
+            color: #f1f1f1;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .explore-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #2ECC71; /* Cool green button */
+            color: #f1f1f1;
+            text-transform: uppercase;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .explore-btn:hover {
+            background-color: #27AE60; /* Darker green hover effect */
+        }
+
+        /* Add some padding to ensure the section is scrollable */
+        section {
+            padding: 100px 0;
         }
     </style>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlkqLV5Szqua_fdhTXBSJ-QJfAmukjQac&callback=initMap" async defer></script>
-    <script>
-        function initMap() {
-            // Set the location for Atlanta
-            const atlanta = { lat: 33.7490, lng: -84.3880 };
-            const map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 12,
-                center: atlanta,
-            });
-            const marker = new google.maps.Marker({
-                position: atlanta,
-                map: map,
-            });
-
-            // Show the map div
-            document.getElementById("map").style.display = "block";
-        }
-    </script>
 </head>
 <body>
-    <div class="hero">
-        <nav class="navbar">
-            <a href="{% url 'about' %}">About</a>
-            <a href="{% url 'map' %}" class="btn">Explore Now</a> <!-- Link to the map view -->
-            <a href="{% url 'register' %}">Register!</a>
-            <a href="{% url 'contact' %}">Contact</a>
-            <li><a href="{% url 'favorites' %}">Favorites</a></li>
-            <a href="#" class="cta">More Information!</a> <!-- Call-to-action button -->
-        </nav>
-        <div class="hero-text">
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#explore">Explore Now</a></li>
+            <li><a href="#register">Register</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#favorites">Favorites</a></li>
+        </ul>
+        <a href="#" class="cta">More Information</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
             <h1>Welcome to Atlanta Food Finder</h1>
             <p>Discover the best restaurants in Atlanta.</p>
-            <a href="map.html" class="btn">Explore Now</a> <!-- Redirect to the map page -->
+            <a href="#explore" class="explore-btn">Explore Now</a>
         </div>
-    </div>
-    <div id="map" style="height: 500px; width: 100%; display: none;"></div> <!-- Map container -->
+    </section>
 </body>
 </html>
-
