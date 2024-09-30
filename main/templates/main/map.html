@@ -39,6 +39,49 @@
                     infowindow.open(map, marker);
                 });
             });
+
+            // Create the search box and link it to the UI element
+            const input = document.getElementById("search-input");
+            const searchBox = new google.maps.places.SearchBox(input);
+
+            // Bias the SearchBox results towards the current map's viewport
+            map.addListener("bounds_changed", () => {
+                searchBox.setBounds(map.getBounds());
+            });
+
+            searchBox.addListener("places_changed", () => {
+                const places = searchBox.getPlaces();
+
+                if (places.length === 0) {
+                    return;
+                }
+
+                // Clear out the old markers
+                marker.setMap(null);
+
+                // Get the icon, name, and location of the first place (if more, you can handle them too)
+                const bounds = new google.maps.LatLngBounds();
+                const place = places[0];
+
+                if (!place.geometry || !place.geometry.location) {
+                    return;
+                }
+
+                // Place the new marker at the searched location
+                const newMarker = new google.maps.Marker({
+                    map,
+                    position: place.geometry.location,
+                });
+
+                if (place.geometry.viewport) {
+                    // Only geocodes have viewport
+                    bounds.union(place.geometry.viewport);
+                } else {
+                    bounds.extend(place.geometry.location);
+                }
+
+                map.fitBounds(bounds);
+            });
         }
     </script>
 </head>
