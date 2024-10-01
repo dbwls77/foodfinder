@@ -16,6 +16,7 @@
 
         body {
             font-family: 'Poppins', sans-serif;
+            color: #f1f1f1;
             background-color: #000000; /* Black background */
             display: flex;
             justify-content: center;
@@ -35,7 +36,7 @@
             width: 100%;
             top: 0;
             z-index: 1000;
-            font-size: 18px;
+            font-size: 18px; /* Uniform font size */
         }
 
         .navbar a {
@@ -43,10 +44,16 @@
             text-decoration: none;
             margin: 0 20px;
             font-family: 'Poppins', sans-serif;
+            font-weight: 500;
         }
 
         .navbar a:hover {
             color: #000000;  /* Black hover effect */
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
         }
 
         /* Container styling */
