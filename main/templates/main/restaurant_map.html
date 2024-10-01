@@ -95,6 +95,20 @@
     </style>
 
     <script>
+        // Function to calculate distance between two lat/lng points in kilometers
+        function haversineDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371; // Radius of the Earth in km
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+
+            const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+            return R * c; // Distance in km
+        }
+
         function initMap() {
             var centerLocation = { lat: 33.7490, lng: -84.3880 };  // Atlanta, GA
             var map = new google.maps.Map(document.getElementById('map'), {
@@ -102,25 +116,44 @@
                 center: centerLocation
             });
 
-            var restaurants = JSON.parse('{{ restaurants|escapejs }}');
+            // Add a test marker
+            var testMarker = new google.maps.Marker({
+                position: centerLocation,  // Atlanta, GA
+                map: map,
+                title: "Test Marker"
+            });
 
+            // Get restaurant data and parse it
+            var restaurants = JSON.parse("{{ restaurants|safe|escapejs }}");  // Safely pass JSON data
+
+            // Log the restaurant data for verification
+            console.log("Restaurants Data (Raw):", restaurants);
+
+            // Specify maximum distance (in km)
+            const maxDistance = 10; // Set distance in kilometers
+
+            // Add markers for each restaurant within maxDistance
             restaurants.forEach(function(restaurant) {
-                var marker = new google.maps.Marker({
-                    position: { lat: restaurant.latitude, lng: restaurant.longitude },
-                    map: map,
-                    title: restaurant.name
-                });
+                const distance = haversineDistance(centerLocation.lat, centerLocation.lng, restaurant.latitude, restaurant.longitude);
+                if (distance <= maxDistance) { // Only add marker if within distance
+                    var marker = new google.maps.Marker({
+                        position: { lat: restaurant.latitude, lng: restaurant.longitude },
+                        map: map,
+                        title: restaurant.name
+                    });
 
-                var infowindow = new google.maps.InfoWindow({
-                    content: `<h4>${restaurant.name}</h4><p>${restaurant.cuisine_type}</p><p>Rating: ${restaurant.rating}</p>`
-                });
+                    var infowindow = new google.maps.InfoWindow({
+                        content: `<h4>${restaurant.name}</h4><p>${restaurant.cuisine_type}</p>`
+                    });
 
-                marker.addListener('click', function() {
-                    infowindow.open(map, marker);
-                });
+                    marker.addListener('click', function() {
+                        infowindow.open(map, marker);
+                    });
+                }
             });
         }
     </script>
+
 </head>
 <body onload="initMap()">
 
@@ -149,4 +182,5 @@
 
 </body>
 </html>
+
 

@@ -5,10 +5,15 @@ from .forms import UserRegisterForm, RestaurantSearchForm
 from .models import Restaurant
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
+import json
+from django.contrib.auth import authenticate, login
+
 
 
 class CustomLoginView(LoginView):
-    template_name = 'main/login.html'  # Use your login template
+    template_name = 'main/login.html'  # Specify your login template here
+    # You can also define success_url if needed
+    success_url = reverse_lazy('index')  # Redirect to index or another URL upon successful login
 
 def get_success_url(self):
     return reverse_lazy('index')  # Redirect to the index view after successful login
@@ -24,10 +29,10 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('main')  # Redirect to main page after login
+            return redirect('index')  # Redirect to the main page after login
         else:
-            return render(request, 'login.html', {'error': 'Invalid credentials'})
-    return render(request, 'login.html')
+            return render(request, 'main/login.html', {'error': 'Invalid credentials'})
+    return render(request, 'main/login.html')  # Display the login form
 
 def register(request):
     if request.method == 'POST':
@@ -105,12 +110,15 @@ def restaurant_map(request):
     restaurant_data = []
     for restaurant in restaurants:
         restaurant_info = {
-            'name': restaurant.name,
-            'cuisine_type': restaurant.cuisine_type,
-            'latitude': float(restaurant.latitude),  # Ensure latitude is a float
-            'longitude': float(restaurant.longitude),  # Ensure longitude is a float
+            "name": restaurant.name,
+            "cuisine_type": restaurant.cuisine_type,
+            "latitude": float(restaurant.latitude),  # Ensure latitude is a float
+            "longitude": float(restaurant.longitude),  # Ensure longitude is a float
             # Add any other fields as necessary
         }
         restaurant_data.append(restaurant_info)
 
-    return render(request, 'main/restaurant_map.html', {'restaurants': restaurant_data})
+    # Serialize restaurant data to JSON
+    restaurants_json = json.dumps(restaurant_data)
+
+    return render(request, 'main/restaurant_map.html', {'restaurants': restaurants_json})
