@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Registration</title>
-    <!-- Apply the same fonts used across the site -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
     <style>
         /* Global reset */
         * {
@@ -23,7 +21,6 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            padding-top: 60px; /* To accommodate fixed navbar */
         }
 
         /* Navbar styling */
@@ -32,12 +29,12 @@
             justify-content: space-between;
             align-items: center;
             background-color: #4CAF50; /* Green background for the navbar */
-            padding: 15px 20px;
+            padding: 15px 30px;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            font-size: 18px; /* Uniform font size */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .navbar a {
@@ -45,7 +42,8 @@
             text-decoration: none;
             margin: 0 20px;
             font-family: 'Poppins', sans-serif;
-            font-weight: 500;
+            font-weight: 600;
+            transition: color 0.3s ease;
         }
 
         .navbar a:hover {
@@ -60,69 +58,78 @@
 
         /* Container styling */
         .container {
-            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white for contrast */
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            background-color: rgba(255, 255, 255, 0.1); /* Transparent form container */
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
             max-width: 400px;
             width: 100%;
             text-align: center;
-            margin-top: 60px; /* Space for fixed navbar */
+            margin-top: 100px; /* Space for fixed navbar */
         }
 
         .container h2 {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             font-family: 'Poppins', sans-serif;
             font-size: 2.5rem;
             color: #4CAF50; /* Green title */
             text-align: center;
             letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
         /* Form styling */
         .container form {
             display: flex;
             flex-direction: column;
+            gap: 15px; /* Added gap for more space between form elements */
         }
 
         .container form input {
-            padding: 10px;
+            padding: 12px;
             margin-bottom: 10px;
             border: 1px solid #4CAF50; /* Green border */
-            border-radius: 4px;
-            background-color: #333333; /* Dark input background */
+            border-radius: 6px;
+            background-color: #1c1c1c; /* Darker input background */
             color: white;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .container form input:focus {
+            border-color: #32CD32;
+            box-shadow: 0 0 8px rgba(50, 205, 50, 0.8); /* Green glow on focus */
+            outline: none;
         }
 
         .container form button {
-            padding: 12px;
+            padding: 14px;
             background-color: #4CAF50; /* Green button */
             color: #fff;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .container form button:hover {
-            background-color: #3e8e41; /* Darker green on hover */
+            background-color: #32CD32; /* Brighter green on hover */
+            box-shadow: 0 4px 8px rgba(50, 205, 50, 0.5);
         }
 
-        /* Nav section inside the container */
+        /* Optional: Make navbar fixed with a smooth scroll to sections */
         nav {
             margin-top: 20px;
-            text-align: center;
         }
 
         nav a {
-            color: #f1f1f1; /* White text */
+            color: #f1f1f1;
             margin: 0 10px;
             text-decoration: none;
-            font-weight: 600; /* Bold text */
+            font-weight: 600;
         }
 
         nav a:hover {
-            text-decoration: underline; /* Underline on hover */
+            text-decoration: underline;
         }
     </style>
 </head>
