@@ -1,84 +1,13 @@
-<!-- main/templates/main/favorites.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
-    <title>Your Favorites</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'main/style.css' %}"> <!-- Link to your CSS -->
-    <style>
-        /* Gradient background */
-        body {
-            background: linear-gradient(180deg, #000000, #333333);  /* Black to dark gray gradient */
-            color: white;
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        /* Navigation Bar Styling */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #00b140;  /* Matching green color */
-            padding: 10px 20px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;  /* Set display to flex for horizontal alignment */
-            gap: 20px;  /* Add space between links */
-            margin: 0;  /* Remove default margin */
-            padding: 0;  /* Remove default padding */
-        }
-
-        .nav-links li {
-            margin: 0;  /* Remove margin from list items */
-        }
-
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            font-family: 'Poppins', sans-serif;
-            font-size: 18px;
-        }
-
-        .navbar a:hover {
-            color: #ffffff;
-            text-decoration: underline;
-        }
-
-        h1 {
-            text-align: center;
-            color: #00b140;
-            font-family: 'Poppins', sans-serif;
-            margin-top: 40px;
-            font-size: 48px;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-            text-align: center;
-        }
-
-        li {
-            margin: 15px 0;
-            font-size: 20px;
-            color: #ffffff;
-        }
-
-        .remove-link {
-            color: #ff0000;  /* Red color for remove links */
-=======
-    <title>Favorites - Atlanta Food Finder</title>
+    <title>Your Favorites - Atlanta Food Finder</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main/style.css' %}"> <!-- Link to your CSS -->
     <style>
         /* Global reset and styling */
         * {
@@ -87,10 +16,11 @@
             box-sizing: border-box;
         }
 
+        /* Gradient background */
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #000000; /* Black background */
-            color: #f1f1f1; /* Light text */
+            background: linear-gradient(180deg, #000000, #333333); /* Black to dark gray gradient */
+            color: white;
             padding-top: 80px; /* Padding for fixed navbar */
         }
 
@@ -118,34 +48,20 @@
         }
 
         .navbar ul li a {
->>>>>>> 884556d5233564d192935bc074e07110947e0450
             text-decoration: none;
+            color: white;
+            font-size: 18px;
+            transition: color 0.3s ease;
         }
 
-<<<<<<< HEAD
-        .remove-link:hover {
-            text-decoration: underline;
-=======
         .navbar ul li a:hover {
-            background-color: #27AE60; /* Darker green hover effect */
-            color: #000000;
->>>>>>> 884556d5233564d192935bc074e07110947e0450
+            color: #ffffff;
+            text-decoration: underline;
         }
 
         /* Content styling */
         .content {
             padding: 40px;
-<<<<<<< HEAD
-            max-width: 800px;
-            margin: auto;
-            background: #1a1a1a;  /* Dark background for content */
-            border-radius: 10px;
-            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
-        }
-    </style>
-</head>
-<body>
-=======
             max-width: 1200px;
             margin: auto;
             background: #1b1b1b; /* Darker background for content */
@@ -257,7 +173,6 @@
 </head>
 <body>
 
->>>>>>> 884556d5233564d192935bc074e07110947e0450
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="nav-brand">
@@ -274,23 +189,7 @@
     </nav>
 
     <div class="content">
-<<<<<<< HEAD
         <h1>Your Favorite Restaurants</h1>
-        <ul>
-            {% if favorites %}
-                {% for restaurant in favorites %}
-                    <li>
-                        {{ restaurant.name }} - {{ restaurant.cuisine_type }}
-                        <a href="{% url 'remove_favorite' restaurant.id %}" class="remove-link">Remove</a>
-                    </li>
-                {% endfor %}
-            {% else %}
-                <li>No favorites yet!</li>
-            {% endif %}
-        </ul>
-    </div>
-=======
-        <h1>Your Favorites</h1>
 
         <div class="favorite-list">
             <ul id="favorites-list"></ul>
@@ -372,6 +271,5 @@
         // Display favorites when the page loads
         window.onload = displayFavorites;
     </script>
->>>>>>> 884556d5233564d192935bc074e07110947e0450
 </body>
 </html>
