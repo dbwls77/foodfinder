@@ -1,72 +1,137 @@
-<!-- main/templates/main/register.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Registration</title>
+    <!-- New and bold font combination -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
     <style>
+        /* Apply a black theme with new text styles and a green navbar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background: url('https://t4.ftcdn.net/jpg/02/92/20/37/360_F_292203735_CSsyqyS6A4Z9Czd4Msf7qZEhoxjpzZl1.jpg') no-repeat center center/cover;
-            /* background-color: #f4c2c2; */
+            font-family: 'Poppins', sans-serif;
+            color: #f1f1f1;
+            background-color: #000000; /* Fully black background */
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
+            height: 100vh; /* Full height for centering */
         }
+
+        /* Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: #2ECC71; /* Cool green nav bar */
+            transition: background-color 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Add shadow for depth */
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin: 0 20px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: #f1f1f1;
+            font-weight: 500;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            padding: 10px 20px;
+            border-radius: 20px;
+        }
+
+        .navbar ul li a:hover {
+            background-color: #27AE60; /* Darker green hover effect */
+            color: #000000; /* Black text on hover */
+        }
+
         .container {
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white for contrast */
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             max-width: 400px;
             width: 100%;
+            text-align: center;
+            margin-top: 60px; /* Space for fixed navbar */
         }
+
         .container h2 {
             margin-bottom: 20px;
+            color: #2ECC71; /* Green color for the heading */
         }
+
         .container form {
             display: flex;
             flex-direction: column;
         }
+
         .container form input {
             padding: 10px;
             margin-bottom: 10px;
-            border: 1px solid #ddd;
+            border: 2px solid #2ECC71; /* Green border for input fields */
             border-radius: 4px;
+            color: #2ECC71; /* Green text color for input fields */
+            background-color: #fff; /* White background for input fields */
         }
+
         .container form button {
             padding: 10px;
-            background-color: #007bff;
+            background-color: #2ECC71; /* Green button */
             color: #fff;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
+
         .container form button:hover {
-            background-color: #0056b3;
+            background-color: #229954; /* Darker green on hover */
         }
-        nav {
-            margin-top: 20px;
-            text-align: center;
-        }
+
+        /* Optional styles for links in the nav */
         nav a {
+            color: #f1f1f1; /* White text */
             margin: 0 10px;
             text-decoration: none;
-            color: #007bff;
+            font-weight: 600; /* Bold text */
+        }
+
+        nav a:hover {
+            text-decoration: underline; /* Underline on hover */
         }
     </style>
 </head>
 <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="{% url 'index' %}">HOME</a></li>
+            <li><a href="{% url 'contact' %}">CONTACT</a></li>
+            <li><a href="{% url 'restaurant-map' %}">EXPLORE NOW</a></li>
+            <li><a href="{% url 'about' %}">ABOUT</a></li>
+        </ul>
+    </nav>
+
     <div class="container">
-        <nav>
-            <a href="{% url 'index' %}">HOME</a>
-            <a href="{% url 'contact' %}">CONTACT</a>
-            <a href="{% url 'restaurant-map' %}" class="btn">EXPLORE NOW</a> <!-- Updated the link to 'restaurant-map' -->
-            <a href="{% url 'about' %}">ABOUT</a>
-        </nav>
         <h2>REGISTER</h2>
         <form method="POST">
             {% csrf_token %}
@@ -76,4 +141,3 @@
     </div>
 </body>
 </html>
-

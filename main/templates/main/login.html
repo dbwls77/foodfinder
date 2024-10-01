@@ -1,63 +1,149 @@
-<!-- main/templates/main/login.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Login</title>
+    <!-- New and bold font combination -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4c2c2;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+        /* Apply a black theme with new text styles and a green navbar */
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #f1f1f1;
+            background-color: #000000; /* Fully black background */
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: #2ECC71; /* Cool green nav bar */
+            transition: background-color 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Add shadow for depth */
+            position: fixed;
             width: 100%;
+            top: 0;
+            z-index: 1000;
         }
+
+        .navbar ul {
+            list-style-type: none;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin: 0 20px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: #f1f1f1;
+            font-weight: 500;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            padding: 10px 20px;
+            border-radius: 20px;
+        }
+
+        .navbar ul li a:hover {
+            background-color: #27AE60; /* Darker green hover effect */
+            color: #000000; /* Black text on hover */
+        }
+
+        /* Login Container */
+        .container {
+            max-width: 400px;
+            margin: 100px auto; /* Center the container with margin */
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent white background */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
         .container h2 {
             margin-bottom: 20px;
+            text-align: center;
+            color: #2ECC71; /* Green for the main header */
         }
+
         .container form {
             display: flex;
             flex-direction: column;
         }
+
         .container form input {
             padding: 10px;
             margin-bottom: 10px;
             border: 1px solid #ddd;
             border-radius: 4px;
         }
+
         .container form button {
             padding: 10px;
-            background-color: #007bff;
-            color: #fff;
+            background-color: #27AE60; /* Dark green button */
+            color: #f1f1f1;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
+
         .container form button:hover {
-            background-color: #0056b3;
+            background-color: #229954; /* More vibrant hover effect */
+        }
+
+        .error {
+            color: red;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .create-account {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .create-account a {
+            color: #2ECC71; /* Match link color with navbar */
         }
     </style>
 </head>
 <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="http://127.0.0.1:8000/about/">About</a></li>
+            <li><a href="http://127.0.0.1:8000/map/">Explore Now</a></li>
+            <li><a href="http://127.0.0.1:8000/register/">Register</a></li>
+            <li><a href="http://127.0.0.1:8000/contact/">Contact</a></li>
+            <li><a href="http://127.0.0.1:8000/favorites/">Favorites</a></li>
+        </ul>
+        <a href="http://127.0.0.1:8000/restaurants/" class="cta">Search</a>
+    </nav>
+
     <div class="container">
         <h2>Login</h2>
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
         <form method="POST">
             {% csrf_token %}
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Login</button>
         </form>
+        <div class="create-account">
+            <p>Don't have an account? <a href="{% url 'register' %}">Create Account</a></p>
+        </div>
     </div>
 </body>
 </html>

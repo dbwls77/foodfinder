@@ -1,58 +1,124 @@
-<!-- main/templates/main/about.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us</title>
+    <!-- New and bold font combination -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: url('https://t4.ftcdn.net/jpg/02/92/20/37/360_F_292203735_CSsyqyS6A4Z9Czd4Msf7qZEhoxjpzZl1.jpg') no-repeat center center/cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+        /* Apply a black theme with new text styles and a green navbar */
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 800px;
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #f1f1f1;
+            background-color: #000000; /* Fully black background */
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: #2ECC71; /* Cool green nav bar */
+            transition: background-color 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Add shadow for depth */
+            position: fixed;
             width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin: 0 20px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: #f1f1f1;
+            font-weight: 500;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            padding: 10px 20px;
+            border-radius: 20px;
+        }
+
+        .navbar ul li a:hover {
+            background-color: #27AE60; /* Darker green hover effect */
+            color: #000000; /* Black text on hover */
+        }
+
+        /* About Container */
+        .container {
+            max-width: 800px;
+            margin: 100px auto; /* Center the container with margin */
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent white background */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
             text-align: center;
         }
+
         .container h2 {
             margin-bottom: 20px;
             font-size: 40px;
+            color: #2ECC71; /* Green for the main header */
         }
-        nav {
+
+        .container p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #f1f1f1;
+        }
+
+        /* Navigation Links Below Content */
+        .nav-links {
             margin-top: 20px;
             text-align: center;
         }
-        nav a {
+
+        .nav-links a {
             margin: 0 10px;
             text-decoration: none;
-            color: #007bff;
+            color: #2ECC71; /* Green for the links */
         }
     </style>
 </head>
 <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="http://127.0.0.1:8000/about/">About</a></li>
+            <li><a href="http://127.0.0.1:8000/map/">Explore Now</a></li>
+            <li><a href="http://127.0.0.1:8000/register/">Register</a></li>
+            <li><a href="http://127.0.0.1:8000/contact/">Contact</a></li>
+            <li><a href="http://127.0.0.1:8000/favorites/">Favorites</a></li>
+        </ul>
+        <a href="http://127.0.0.1:8000/restaurants/" class="cta">Search</a>
+    </nav>
+
     <div class="container">
-        <nav>
+        <h2>About Us</h2>
+        <p>The Atlanta Food Finder is an innovative platform designed to connect food enthusiasts with the diverse culinary offerings of Atlanta. Our platform aims to simplify the process of discovering restaurants by providing an interactive map that showcases dining spots and your local favorites. With user-friendly features, the Atlanta Food Finder enables users to explore, review, and navigate to their next dining adventure, fostering a vibrant community of food lovers.</p>
+
+        <div class="nav-links">
             <a href="{% url 'index' %}">HOME</a>
             <a href="{% url 'register' %}">REGISTER</a>
             <a href="{% url 'contact' %}">CONTACT</a>
             <a href="{% url 'restaurant-map' %}">EXPLORE NOW</a>
             <a href="{% url 'favorites' %}">FAVORITES</a>
-        </nav>
-        <h2>About Us</h2>
-        <p>The Atlanta Food Finder is an innovative platform designed to connect food enthusiasts with the diverse culinary offerings of Atlanta. Our platform aims to simplify the process of discovering restaurants by providing an interactive map that showcases dining spots and your local favorites. With user-friendly features, the Atlanta Food Finder enables users to explore, review, and navigate to their next dining adventure, fostering a vibrant community of food lovers. 
-        </p>
+        </div>
     </div>
 </body>
 </html>
-
-
-
