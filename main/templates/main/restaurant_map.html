@@ -1,0 +1,152 @@
+<!-- main/templates/main/restaurant_map.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Map</title>
+
+    <!-- Load the Google Maps API with your API key -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlkqLV5Szqua_fdhTXBSJ-QJfAmukjQac&callback=initMap" defer></script>
+
+    <style>
+        /* Gradient background */
+        body {
+            background: linear-gradient(180deg, #000000, #333333);  /* Black to dark gray gradient */
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navigation Bar Styling */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #00b140;  /* Matching green color */
+            padding: 10px 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            margin: 0 15px;
+        }
+
+        .navbar a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        /* Styling for the map container */
+        #map {
+            height: 600px;  /* Make the map taller to fill the space */
+            width: 100%;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);  /* Shadow for map container */
+        }
+
+        h1 {
+            text-align: center;
+            color: #00b140;
+            font-family: 'Poppins', sans-serif;
+            margin-top: 40px;
+            font-size: 48px;
+        }
+
+        .content {
+            padding: 40px;
+            max-width: 1200px;
+            margin: auto;
+            background: #1a1a1a;  /* Dark background for content */
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .explore-now-btn {
+            display: inline-block;
+            background-color: #00b140;
+            color: white;
+            padding: 15px 30px;
+            margin-top: 20px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .explore-now-btn:hover {
+            background-color: #00a333;  /* Slightly darker green on hover */
+        }
+    </style>
+
+    <script>
+        function initMap() {
+            var centerLocation = { lat: 33.7490, lng: -84.3880 };  // Atlanta, GA
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 12,
+                center: centerLocation
+            });
+
+            var restaurants = JSON.parse('{{ restaurants|escapejs }}');
+
+            restaurants.forEach(function(restaurant) {
+                var marker = new google.maps.Marker({
+                    position: { lat: restaurant.latitude, lng: restaurant.longitude },
+                    map: map,
+                    title: restaurant.name
+                });
+
+                var infowindow = new google.maps.InfoWindow({
+                    content: `<h4>${restaurant.name}</h4><p>${restaurant.cuisine_type}</p><p>Rating: ${restaurant.rating}</p>`
+                });
+
+                marker.addListener('click', function() {
+                    infowindow.open(map, marker);
+                });
+            });
+        }
+    </script>
+</head>
+<body onload="initMap()">
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <a href="/">FoodFinder</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/map/">Map</a></li>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="/about/">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="content">
+        <h1>Restaurants on the Map</h1>
+        <!-- Map will be rendered here -->
+        <div id="map"></div>
+
+        <!-- Button to Explore More -->
+        <a href="/explore-now/" class="explore-now-btn">Explore Now</a>
+    </div>
+
+</body>
+</html>
+

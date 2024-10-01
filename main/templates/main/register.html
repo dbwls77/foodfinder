@@ -8,7 +8,7 @@
         body {
             font-family: Arial, sans-serif;
             background: url('https://t4.ftcdn.net/jpg/02/92/20/37/360_F_292203735_CSsyqyS6A4Z9Czd4Msf7qZEhoxjpzZl1.jpg') no-repeat center center/cover;
-            #background-color: #f4c2c2;
+            /* background-color: #f4c2c2; */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -48,7 +48,7 @@
         .container form button:hover {
             background-color: #0056b3;
         }
-                nav {
+        nav {
             margin-top: 20px;
             text-align: center;
         }
@@ -61,11 +61,10 @@
 </head>
 <body>
     <div class="container">
-                     <nav>
-                   <a href="{% url 'index' %}">HOME</a>
-                 <a href="{% url 'contact' %}">CONTACT</a>
-
-            <a href="{% url 'map' %}" class="btn">EXPLORE NOW</a>
+        <nav>
+            <a href="{% url 'index' %}">HOME</a>
+            <a href="{% url 'contact' %}">CONTACT</a>
+            <a href="{% url 'restaurant-map' %}" class="btn">EXPLORE NOW</a> <!-- Updated the link to 'restaurant-map' -->
             <a href="{% url 'about' %}">ABOUT</a>
         </nav>
         <h2>REGISTER</h2>
@@ -77,3 +76,4 @@
     </div>
 </body>
 </html>
+
