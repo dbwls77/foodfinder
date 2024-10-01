@@ -8,7 +8,7 @@
 
     <style>
         body {
-            background: linear-gradient(180deg, #000000, #333333);  /* Black to dark gray gradient */
+            background: linear-gradient(180deg, #000000, #333333); /* Black to dark gray gradient */
             color: white;
             font-family: 'Poppins', sans-serif;
             margin: 0;
@@ -20,7 +20,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #00b140;  /* Matching green color */
+            background-color: #00b140; /* Matching green color */
             padding: 10px 20px;
         }
 
@@ -48,14 +48,14 @@
             padding: 40px;
             max-width: 1200px;
             margin: auto;
-            background: #1a1a1a;  /* Darker background for content */
+            background: #1a1a1a; /* Darker background for content */
             border-radius: 10px;
-            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);  /* Shadow effect */
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5); /* Shadow effect */
         }
 
         h1 {
             text-align: center;
-            color: #00b140;  /* Green color for headings */
+            color: #00b140; /* Green color for headings */
             font-size: 48px;
             margin-bottom: 40px;
         }
@@ -80,7 +80,7 @@
         }
 
         form button:hover {
-            background-color: #00a333;  /* Darker green on hover */
+            background-color: #00a333; /* Darker green on hover */
         }
 
         /* Styling the list of results */
@@ -95,17 +95,21 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-between; /* Align items to the edges */
+            align-items: center; /* Center items vertically */
         }
 
         h3 {
             margin: 0 0 10px 0;
-            color: #00b140;  /* Green heading */
+            color: #00b140; /* Green heading */
             font-size: 24px;
         }
 
         p {
             color: #b5b5b5;
             font-size: 18px;
+            margin: 0; /* Remove margin for better alignment */
         }
 
         /* Center text if no results are found */
@@ -127,6 +131,7 @@
         <ul class="nav-links">
             <li><a href="/">Home</a></li>
             <li><a href="/map/">Map</a></li>
+            <li><a href="/favorites/">Favorites</a></li> <!-- Link to Favorites -->
             <li><a href="/contact/">Contact</a></li>
             <li><a href="/about/">About</a></li>
         </ul>
@@ -146,8 +151,20 @@
         <ul>
             {% for restaurant in restaurants %}
                 <li>
-                    <h3>{{ restaurant.name }} - {{ restaurant.cuisine_type }}</h3>
-                    <p>Rating: {{ restaurant.rating }} | Distance: {{ restaurant.distance }} miles</p>
+                    <div>
+                        <h3>{{ restaurant.name }} - {{ restaurant.cuisine_type }}</h3>
+                        <p>Rating: {{ restaurant.rating }} | Distance: {{ restaurant.distance }} miles</p>
+                    </div>
+                    <div>
+                        <form action="{% url 'add_favorite' restaurant.id %}" method="post" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit">Add to Favorites</button>
+                        </form>
+                        <form action="{% url 'remove_favorite' restaurant.id %}" method="post" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit">Remove from Favorites</button>
+                        </form>
+                    </div>
                 </li>
             {% empty %}
                 <p class="no-results">No restaurants found matching your criteria.</p>

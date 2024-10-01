@@ -3,6 +3,10 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from .forms import UserRegisterForm
 from .models import Restaurant
+from django.shortcuts import get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from .models import Restaurant  # Adjust this import if your models.py is in a different app
+
 
 def index(request):
     return render(request, 'main/index.html')
@@ -30,6 +34,19 @@ def contact(request):
 
 def favorites(request):
     return render(request, 'main/favorites.html')
+
+@login_required
+def add_favorite(request, restaurant_id):
+    restaurant = get_object_or_404(Restaurant, id=restaurant_id)
+    restaurant.favorites.add(request.user)
+    return redirect('restaurant_search')  # Redirect to the restaurant search page
+
+@login_required
+def remove_favorite(request, restaurant_id):
+    restaurant = get_object_or_404(Restaurant, id=restaurant_id)
+    restaurant.favorites.remove(request.user)
+    return redirect('restaurant_search')  # Redirect to the restaurant search page
+
 
 
 
