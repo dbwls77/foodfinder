@@ -8,7 +8,6 @@
         body {
             font-family: Arial, sans-serif;
             background: url('https://t4.ftcdn.net/jpg/02/92/20/37/360_F_292203735_CSsyqyS6A4Z9Czd4Msf7qZEhoxjpzZl1.jpg') no-repeat center center/cover;
-            #background-color: #f4c2c2;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -45,12 +44,16 @@
             <a href="{% url 'index' %}">HOME</a>
             <a href="{% url 'register' %}">REGISTER</a>
             <a href="{% url 'contact' %}">CONTACT</a>
-            <a href="{% url 'map' %}" class="btn">EXPLORE NOW</a>
+            <a href="{% url 'restaurant-map' %}">EXPLORE NOW</a>
+            <a href="{% url 'favorites' %}">FAVORITES</a>
+            <a href="{% url 'more-info' %}">MORE INFORMATION</a>
         </nav>
         <h2>About Us</h2>
-        <p>Welcome to the About page! Here, you can learn more about our application and its features.</p>
-
+        <p>The Atlanta Food Finder is an innovative platform designed to connect food enthusiasts with the diverse culinary offerings of Atlanta. Our platform aims to simplify the process of discovering restaurants by providing an interactive map that showcases dining spots and your local favorites. With user-friendly features, the Atlanta Food Finder enables users to explore, review, and navigate to their next dining adventure, fostering a vibrant community of food lovers. 
+        </p>
     </div>
 </body>
 </html>
+
+
 

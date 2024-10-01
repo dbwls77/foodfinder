@@ -14,4 +14,6 @@ urlpatterns = [
     path('restaurants/', views.restaurant_list, name='restaurant-list'),
     path('fetch-restaurants/', views.fetch_restaurants, name='fetch-restaurants'),
     path('map/', views.restaurant_map, name='restaurant-map'),
+    path('search/', views.more_info, name='search'),  # New URL pattern
 ]
+

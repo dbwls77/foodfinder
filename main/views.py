@@ -32,6 +32,7 @@ def favorites(request):
     return render(request, 'main/favorites.html')
 
 
+
 from .models import Restaurant
 from .forms import RestaurantSearchForm
 
@@ -181,6 +182,13 @@ def restaurant_list(request):
         restaurants = restaurants.filter(rating__gte=min_rating)
 
     return render(request, 'main/restaurant_list.html', {'restaurants': restaurants})
+
+def more_info(request):
+    print("More Info View Triggered")
+    return render(request, 'main/more_info.html')  # Make sure you create a corresponding HTML file
+
+def test_links(request):
+    return render(request, 'main/test_links.html')
 
 # main/views.py
 from django.shortcuts import render

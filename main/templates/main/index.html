@@ -6,10 +6,9 @@
     <title>Atlanta Food Finder</title>
     <!-- New and bold font combination -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-
+    
     <style>
         /* Apply a black theme with new text styles and a green navbar */
-
         * {
             margin: 0;
             padding: 0;
@@ -82,6 +81,7 @@
             justify-content: center;
             text-align: center;
             padding: 0 20px;
+            margin-top: 60px; /* Ensure space for the fixed navbar */
         }
 
         .hero-content {
@@ -122,23 +122,33 @@
             background-color: #27AE60; /* Darker green hover effect */
         }
 
-        /* Add some padding to ensure the section is scrollable */
+        /* Section Styles */
         section {
-            padding: 100px 0;
+            padding: 100px 20px; /* Adjust this as needed */
+            border: 1px solid #f1f1f1; /* Optional: For visual separation */
         }
     </style>
+
+    <!-- Load Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap" defer></script>
+    <script>
+        // Your Google Maps initialization script
+        function initMap() {
+            // Initialize your map here
+        }
+    </script>
 </head>
-<body>
+<body onload="initMap()">
     <!-- Navigation Bar -->
     <nav class="navbar">
         <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#explore">Explore Now</a></li>
-            <li><a href="#register">Register</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="#favorites">Favorites</a></li>
+            <li><a href="http://127.0.0.1:8000/about/">About</a></li>
+            <li><a href="http://127.0.0.1:8000/map/">Explore Now</a></li>
+            <li><a href="http://127.0.0.1:8000/register/">Register</a></li>
+            <li><a href="http://127.0.0.1:8000/contact/">Contact</a></li>
+            <li><a href="http://127.0.0.1:8000/favorites/">Favorites</a></li>
         </ul>
-        <a href="#" class="cta">More Information</a>
+        <a href="http://127.0.0.1:8000/restaurants/" class="cta">Search</a>
     </nav>
 
     <!-- Hero Section -->
@@ -146,9 +156,36 @@
         <div class="hero-content">
             <h1>Welcome to Atlanta Food Finder</h1>
             <p>Discover the best restaurants in Atlanta.</p>
-            <a href="#explore" class="explore-btn">Explore Now</a>
-
+            <a href="http://127.0.0.1:8000/map/" class="explore-btn">Explore Now</a>
         </div>
+    </section>
+
+    <!-- Additional Sections (Optional) -->
+    <section id="about">
+        <h2>About</h2>
+        <p>Information about the application...</p>
+    </section>
+
+    <section id="explore">
+        <h2>Explore Now</h2>
+        <p>Details on exploration...</p>
+    </section>
+
+    <section id="register">
+        <h2>Register</h2>
+        <p>Registration details...</p>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Contact information...</p>
+    </section>
+
+    <section id="favorites">
+        <h2>Favorites</h2>
+        <p>Your favorite places...</p>
     </section>
 </body>
 </html>
+
+
