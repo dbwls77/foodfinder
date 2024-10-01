@@ -6,14 +6,28 @@ from .models import Restaurant
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
 
+
 class CustomLoginView(LoginView):
     template_name = 'main/login.html'  # Use your login template
 
 def get_success_url(self):
     return reverse_lazy('index')  # Redirect to the index view after successful login
 
+@login_required
 def index(request):
     return render(request, 'main/index.html')
+
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('main')  # Redirect to main page after login
+        else:
+            return render(request, 'login.html', {'error': 'Invalid credentials'})
+    return render(request, 'login.html')
 
 def register(request):
     if request.method == 'POST':

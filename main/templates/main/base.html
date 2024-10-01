@@ -114,6 +114,10 @@
             <li><a href="/map/">Map</a></li>
             <li><a href="/contact/">Contact</a></li>
             <li><a href="/about/">About</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'favorites' %}">Favorites</a></li>
+            <li><a href="{% url 'logout' %}" class="logout-btn">Logout</a></li>
+            {% endif %}
         </ul>
     </nav>
 
@@ -126,4 +130,5 @@
 
 </body>
 </html>
+
 
