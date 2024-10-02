@@ -20,8 +20,15 @@ Database: PostgresSQL
 
 Version Control: Git and Github 
 
-## Installation 
-To be updated 
-
 ## Usage
-To be updated
+Refer to video 
+
+## Team Webpage 
+
+https://sites.google.com/view/team45project1/home
+
+## Repo 
+
+https://github.com/dbwls77/foodfinder
+
+
