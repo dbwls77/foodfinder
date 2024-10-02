@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Favorites - Atlanta Food Finder</title>
+    <title>Your Profile and Favorites - Atlanta Food Finder</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     {% load static %}
@@ -74,6 +74,25 @@
             color: #4CAF50; /* Green color for headings */
             font-size: 48px;
             margin-bottom: 40px;
+        }
+
+        /* Profile Section */
+        .profile {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: #222222;
+            border-radius: 10px;
+        }
+
+        .profile h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .profile p {
+            font-size: 18px;
+            margin: 5px 0;
         }
 
         .favorite-list {
@@ -184,13 +203,21 @@
             <li><a href="/favorites/">Favorites</a></li>
             <li><a href="/contact/">Contact</a></li>
             <li><a href="/about/">About</a></li>
-            <li><a href="/logout/">Logout</a></li>
+            <li><a href="/login/">Logout</a></li>
         </ul>
     </nav>
 
     <div class="content">
-        <h1>Your Favorite Restaurants</h1>
+        <h1>Your Profile and Favorite Restaurants</h1>
 
+        <!-- Profile Section -->
+        <div class="profile">
+            <h2>{{ user.username }}'s Profile</h2>
+            <p>Email: {{ user.email }}</p>
+            <p>Date Joined: {{ user.date_joined }}</p>
+        </div>
+
+        <!-- Favorites Section -->
         <div class="favorite-list">
             <ul id="favorites-list"></ul>
             <p class="no-results" id="no-results" style="display: none;">No favorites added yet.</p>
@@ -247,29 +274,30 @@
             document.getElementById('overlay').style.display = 'none';
         }
 
-        function removeFavorite(name) {
-            const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-            const updatedFavorites = favorites.filter(favorite => favorite.name !== name);
-            localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
-            displayFavorites();
-        }
+        document.getElementById('favorite-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const name = e.target[0].value;
+            const address = e.target[1].value;
+            addFavorite(name, address);
+            closePopup();
+            e.target.reset();
+        });
 
-        document.getElementById('favorite-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const name = this[0].value;
-            const address = this[1].value;
-
+        function addFavorite(name, address) {
             const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
             favorites.push({ name, address });
             localStorage.setItem('favorites', JSON.stringify(favorites));
-
-            this.reset(); // Clear form
-            closePopup();
             displayFavorites();
-        });
+        }
 
-        // Display favorites when the page loads
-        window.onload = displayFavorites;
+        function removeFavorite(name) {
+            let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+            favorites = favorites.filter(favorite => favorite.name !== name);
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            displayFavorites();
+        }
+
+        displayFavorites();
     </script>
 </body>
 </html>
