@@ -7,7 +7,8 @@
     <title>Restaurant Map</title>
 
     <!-- Load the Google Maps API with your API key -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlkqLV5Szqua_fdhTXBSJ-QJfAmukjQac&callback=initMap" defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlkqLV5Szqua_fdhTXBSJ-QJfAmukjQac&libraries=places&callback=initMap" defer></script>
+
 
     <style>
         /* Gradient background */
@@ -95,64 +96,113 @@
     </style>
 
     <script>
-        // Function to calculate distance between two lat/lng points in kilometers
-        function haversineDistance(lat1, lon1, lat2, lon2) {
-            const R = 6371; // Radius of the Earth in km
-            const dLat = (lat2 - lat1) * Math.PI / 180;
-            const dLon = (lon2 - lon1) * Math.PI / 180;
+        function createMarker(restaurant, map, geocoder) {
+            var lat = restaurant.latitude;
+            var lng = restaurant.longitude;
 
-            const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-                    Math.sin(dLon / 2) * Math.sin(dLon / 2);
-            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            // Log latitude and longitude for debugging
+            console.log(`Restaurant: ${restaurant.name}`);
+            console.log(`Latitude: ${lat}, Longitude: ${lng}`);
 
-            return R * c; // Distance in km
+            var marker = new google.maps.Marker({
+                position: { lat: lat, lng: lng },
+                map: map,
+                title: restaurant.name
+            });
+
+            // Listener for marker click
+            marker.addListener('click', function() {
+                console.log(`Marker clicked: ${restaurant.name}`);
+                console.log(`Latitude: ${lat}, Longitude: ${lng}`);  // Log correct coordinates on click
+
+                // Accessing restaurant details
+                const restaurantDetails = {
+                    name: restaurant.name,
+                    rating: restaurant.rating,
+                };
+
+                // Use Geocoding API to get the address based on lat/lng
+                geocoder.geocode({ location: { lat: lat, lng: lng } }, function(results, status) {
+                    if (status === 'OK' && results[0]) {
+                        const address = results[0].formatted_address;
+                        restaurantDetails.address = address;
+
+                        console.log(`Address for ${restaurantDetails.name}: ${address}`);
+
+                        // Create Google Maps link that searches by restaurant name
+                        const restaurantName = encodeURIComponent(restaurantDetails.name);
+                        const mapsLink = `https://www.google.com/maps/search/?api=1&query=${restaurantName},Atlanta`;
+
+                        // InfoWindow content with hyperlink to Google Maps and "Add to Favorites" button
+                        var string = `
+                            Name: ${restaurantDetails.name}<br>
+                            Rating: ${restaurantDetails.rating}<br>
+                            Address: ${restaurantDetails.address}<br>
+                            <a href="${mapsLink}" target="_blank" style="color:blue; text-decoration:underline;">
+                                View on Google Maps
+                            </a><br>
+                            <button onclick="addToFavorites('${restaurantDetails.name}', '${address}')" style="margin-top: 10px;">Add to Favorites</button>
+                        `;
+
+                        const infoWindow = new google.maps.InfoWindow({
+                            content: '<div style="color:black;">' + string + '</div>'
+                        });
+
+                        infoWindow.open(map, marker);
+                    } else {
+                        console.log('Geocode was not successful for the following reason: ' + status);
+                    }
+                });
+            });
+        }
+
+        function addToFavorites(name, address) {
+            // Store the favorite in local storage
+            let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+            favorites.push({ name: name, address: address });
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+
+            // Optionally, show an alert or a message confirming the addition
+            alert(`${name} has been added to your favorites!`);
         }
 
         function initMap() {
-            var centerLocation = { lat: 33.7490, lng: -84.3880 };  // Atlanta, GA
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 12,
-                center: centerLocation
+            // Center map on Atlanta (adjust coordinates as needed)
+            const atlanta = { lat: 33.7490, lng: -84.3880 };
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 13,
+                center: atlanta,
             });
 
-            // Add a test marker
-            var testMarker = new google.maps.Marker({
-                position: centerLocation,  // Atlanta, GA
-                map: map,
-                title: "Test Marker"
-            });
+            // Initialize Geocoder
+            const geocoder = new google.maps.Geocoder();
 
-            // Get restaurant data and parse it
-            var restaurants = JSON.parse("{{ restaurants|safe|escapejs }}");  // Safely pass JSON data
+            // List of restaurant names to exclude
+            const excludedRestaurants = [
+                "Restaurant 1", // Replace with actual names you want to exclude
+                "Restaurant 2",
+                "Ruth's Chris Steak House",
+                // Add more restaurant names as needed
+            ];
 
-            // Log the restaurant data for verification
-            console.log("Restaurants Data (Raw):", restaurants);
+            // Get restaurant data from the server
+            var restaurants = JSON.parse('{{ restaurants|escapejs }}');
 
-            // Specify maximum distance (in km)
-            const maxDistance = 10; // Set distance in kilometers
+            console.log("Restaurants data: ", restaurants);
 
-            // Add markers for each restaurant within maxDistance
+            // Create markers for each restaurant using the createMarker function
             restaurants.forEach(function(restaurant) {
-                const distance = haversineDistance(centerLocation.lat, centerLocation.lng, restaurant.latitude, restaurant.longitude);
-                if (distance <= maxDistance) { // Only add marker if within distance
-                    var marker = new google.maps.Marker({
-                        position: { lat: restaurant.latitude, lng: restaurant.longitude },
-                        map: map,
-                        title: restaurant.name
-                    });
-
-                    var infowindow = new google.maps.InfoWindow({
-                        content: `<h4>${restaurant.name}</h4><p>${restaurant.cuisine_type}</p>`
-                    });
-
-                    marker.addListener('click', function() {
-                        infowindow.open(map, marker);
-                    });
+                // Check if the restaurant is in the excluded list
+                if (!excludedRestaurants.includes(restaurant.name)) {
+                    createMarker(restaurant, map, geocoder);
+                } else {
+                    console.log(`Restaurant ${restaurant.name} is excluded and will not be added.`);
                 }
             });
         }
     </script>
+
+
 
 </head>
 <body onload="initMap()">
@@ -179,8 +229,6 @@
         <!-- Button to Explore More -->
         <a href="/explore-now/" class="explore-now-btn">Explore Now</a>
     </div>
-
 </body>
 </html>
-
 

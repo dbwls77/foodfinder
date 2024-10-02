@@ -251,11 +251,15 @@
             } else {
                 noResults.style.display = 'none';
                 favorites.forEach(favorite => {
+                    const restaurantName = encodeURIComponent(favorite.name);
+                    const mapsLink = `https://www.google.com/maps/search/?api=1&query=${restaurantName},Atlanta`;
+                    
                     const li = document.createElement('li');
                     li.innerHTML = `
                         <div class="favorite-item">
                             <h3>${favorite.name}</h3>
                             <p>${favorite.address}</p>
+                            <a href="${mapsLink}" target="_blank" style="color: blue; text-decoration: underline;">View on Google Maps</a>
                             <button onclick="removeFavorite('${favorite.name}')">Remove</button>
                         </div>
                     `;
@@ -263,25 +267,6 @@
                 });
             }
         }
-
-        function openPopup() {
-            document.getElementById('popup').style.display = 'block';
-            document.getElementById('overlay').style.display = 'block';
-        }
-
-        function closePopup() {
-            document.getElementById('popup').style.display = 'none';
-            document.getElementById('overlay').style.display = 'none';
-        }
-
-        document.getElementById('favorite-form').addEventListener('submit', function (e) {
-            e.preventDefault();
-            const name = e.target[0].value;
-            const address = e.target[1].value;
-            addFavorite(name, address);
-            closePopup();
-            e.target.reset();
-        });
 
         function addFavorite(name, address) {
             const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
@@ -297,7 +282,29 @@
             displayFavorites();
         }
 
-        displayFavorites();
+        function openPopup() {
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('popup').style.display = 'block';
+        }
+
+        function closePopup() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('popup').style.display = 'none';
+        }
+
+        document.getElementById('favorite-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const name = e.target[0].value;
+            const address = e.target[1].value;
+            addFavorite(name, address);
+            closePopup();
+            e.target.reset(); // Clear the form after submission
+        });
+
+        // Initial display of favorites on page load
+        document.addEventListener('DOMContentLoaded', displayFavorites);
     </script>
 </body>
 </html>
+
+
