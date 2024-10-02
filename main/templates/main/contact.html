@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
     <style>
-        /* Global styling */
+        /* Apply a black theme with new text styles and a green navbar */
         * {
             margin: 0;
             padding: 0;
@@ -17,7 +17,7 @@
         body {
             font-family: 'Poppins', sans-serif;
             color: #f1f1f1;
-            background-color: #000000; /* Black background */
+            background-color: #000000; /* Fully black background */
         }
 
         /* Navigation Bar */
@@ -25,10 +25,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 50px; /* Match Home page navbar padding */
-            background-color: #2ECC71; /* Cool green navbar */
+            padding: 20px 50px;
+            background-color: #2ECC71; /* Cool green nav bar */
             transition: background-color 0.3s ease;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Add shadow for depth */
             position: fixed;
             width: 100%;
             top: 0;
@@ -54,41 +54,65 @@
         }
 
         .navbar ul li a:hover {
-            background-color: #27AE60; /* Darker green hover effect */
             color: #000000; /* Black text on hover */
         }
 
-        /* Container styling */
-        .container {
-            margin-top: 60px; /* Space for fixed navbar */
+        .cta {
+            text-decoration: none;
+            color: #f1f1f1;
+            border-radius: 25px;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta:hover {
+            color: #000000; /* Black text on hover */
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: #000000; /* Black background */
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            padding: 40px;
+            padding: 0 20px;
+            margin-top: 60px; /* Ensure space for the fixed navbar */
         }
 
-        /* Contact Us Section */
-        .container h2 {
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            color: #2ECC71; /* Green title */
+            font-size: 4rem;
+            font-weight: 700;
             margin-bottom: 20px;
+            color: #2ECC71; /* Green for the main header */
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
-        .container p, .container li {
+        .hero p {
+            font-size: 1.6rem;
+            margin-bottom: 30px;
+            color: #f1f1f1;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* Contact Info */
+        .contact-info {
             font-size: 1.2rem;
             color: #f1f1f1;
-            line-height: 1.8;
-            margin-top: 20px;
-        }
-
-        /* Contact list styling */
-        ul {
             list-style-type: none;
             padding: 0;
-            margin-top: 20px;
+            margin-bottom: 30px;
         }
 
-        ul li {
-            margin: 5px 0;
+        .contact-info li {
+            margin-bottom: 10px;
         }
 
         /* Portfolio link styling */
@@ -116,20 +140,24 @@
             <li><a href="http://127.0.0.1:8000/map/">Explore Now</a></li>
             <li><a href="http://127.0.0.1:8000/register/">Register</a></li>
             <li><a href="http://127.0.0.1:8000/contact/">Contact</a></li>
-            <li><a href="http://127.0.0.1:8000/favorites/">Favorites</a></li>
+            <li><a href="http://127.0.0.1:8000/favorites/">Profile</a></li>
+            <li><a href="http://127.0.0.1:8000/login/">Logout</a></li>
         </ul>
+        <a href="http://127.0.0.1:8000/restaurants/" class="cta">Search</a>
     </nav>
 
-    <!-- Contact Us content -->
-    <div class="container">
-        <h2>CONTACT US</h2>
-        <p>If you have any further concerns or questions, please feel free to contact us!</p>
-        <ul>
-            <li>Email: foodfinder@team45.com</li>
-            <li>Check out our portfolio:</li>
-        </ul>
-        <a class="portfolio-link" href="https://sites.google.com/d/1HwzqUPJ5_JQ_wC43VX4Z4fY3Ib_mM7_A/p/10FzC-RgYX7pFBwg4uJEK3vhI_w2LLXVq/edit" target="_blank">Portfolio Link</a>
-    </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Contact Us</h1>
+            <p>If you have any concerns or questions, feel free to reach out!</p>
+            <ul class="contact-info">
+                <li>Email: foodfinder@team45.com</li>
+                <li>Check out our portfolio:</li>
+            </ul>
+            <a class="portfolio-link" href="https://sites.google.com/d/1HwzqUPJ5_JQ_wC43VX4Z4fY3Ib_mM7_A/p/10FzC-RgYX7pFBwg4uJEK3vhI_w2LLXVq/edit" target="_blank">Portfolio Link</a>
+        </div>
+    </section>
 
 </body>
 </html>
