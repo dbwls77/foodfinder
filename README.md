@@ -37,6 +37,9 @@ https://www.figma.com/board/zHwDg4XK4ovlG67wwTM97y/planning?node-id=0-1&node-typ
 
 # Jira 
 
+https://chilukam04.atlassian.net/jira/software/projects/KAN/boards/1/timeline?shared=&atlOrigin=eyJpIjoiOTNmYTFiOTk5NDQzNDY0ZGFhYWVlYTQwOTFjMzhkMDciLCJwIjoiaiJ9
+
+
 
 
 
