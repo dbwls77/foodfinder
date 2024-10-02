@@ -8,11 +8,6 @@ from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
 import json
 from django.contrib.auth import authenticate, login
-import random
-from django.http import JsonResponse
-import requests
-
-
 
 def get_distance(lat1, lon1, lat2, lon2):
     """Calculate the distance between two points using the Haversine formula."""
@@ -150,15 +145,9 @@ def fetch_restaurants(request):
     restaurants = Restaurant.objects.all()
     return render(request, 'main/restaurant_list.html', {'restaurants': restaurants})
 
-# def restaurant_list(request):
-#     restaurants = Restaurant.objects.all()
-#     return render(request, 'main/restaurant_list.html', {'restaurants': restaurants})
-
 def restaurant_list(request):
-    restaurants = list(Restaurant.objects.values(
-        'name', 'address', 'latitude', 'longitude', 'cuisine_type', 'contact_info', 'rating'
-    ))
-    return JsonResponse(restaurants, safe=False)
+    restaurants = Restaurant.objects.all()
+    return render(request, 'main/restaurant_list.html', {'restaurants': restaurants})
 
 # main/views.py
 from django.shortcuts import render
@@ -188,8 +177,6 @@ def restaurant_map(request):
             "cuisine_type": restaurant.cuisine_type,
             "latitude": float(restaurant.latitude),  # Ensure latitude is a float
             "longitude": float(restaurant.longitude),  # Ensure longitude is a float
-            "rating": float(restaurant.rating),
-            "address": restaurant.address,
             # Add any other fields as necessary
         }
         restaurant_data.append(restaurant_info)
@@ -198,32 +185,3 @@ def restaurant_map(request):
     restaurants_json = json.dumps(restaurant_data)
 
     return render(request, 'main/restaurant_map.html', {'restaurants': restaurants_json})
-# def restaurant_map(request):
-#     # Define a list of cuisine types to choose from
-#     cuisine_types = [
-#         'American', 'Italian', 'Chinese', 'Mexican', 
-#         'Indian', 'Thai', 'Japanese', 'Mediterranean', 
-#         'French', 'Spanish'
-#     ]
-
-#     # Fetch all restaurants from the database
-#     restaurants = Restaurant.objects.all()
-
-#     # Convert Decimal fields to float for JSON serialization
-#     restaurant_data = []
-#     for restaurant in restaurants:
-#         restaurant_info = {
-#             "name": restaurant.name,
-#             "cuisine_type": random.choice(cuisine_types),  # Randomly assign cuisine type
-#             "latitude": float(restaurant.latitude),  # Convert latitude to float
-#             "longitude": float(restaurant.longitude),  # Convert longitude to float
-#             "rating": float(restaurant.rating),  # Convert rating to float
-#             "distance": round(random.uniform(1.0, 10.0), 2)  # Random distance between 1 and 10 miles, rounded to 2 decimal places
-#         }
-#         restaurant_data.append(restaurant_info)
-
-#     # Serialize restaurant data to JSON
-#     restaurants_json = json.dumps(restaurant_data)
-
-#     # Render the restaurant_map.html template and pass the serialized data
-#     return render(request, 'main/restaurant_map.html', {'restaurants': restaurants_json})
