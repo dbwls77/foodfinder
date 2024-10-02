@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Atlanta Food Finder</title>
-    <!-- Apply the same fonts used across the site -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
     <style>
-        /* Global reset and styling */
+        /* Global styling */
         * {
             margin: 0;
             padding: 0;
@@ -19,123 +18,91 @@
             font-family: 'Poppins', sans-serif;
             color: #f1f1f1;
             background-color: #000000; /* Black background */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            padding-top: 60px; /* To accommodate fixed navbar */
         }
 
-        /* Navbar styling */
+        /* Navigation Bar */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #4CAF50; /* Green background for the navbar */
-            padding: 15px 20px;
+            padding: 20px 50px; /* Match Home page navbar padding */
+            background-color: #2ECC71; /* Cool green navbar */
+            transition: background-color 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Shadow for depth */
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            font-size: 18px; /* Uniform font size */
         }
 
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            margin: 0 20px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 500;
-        }
-
-        .navbar a:hover {
-            color: #000000;  /* Black hover effect */
-        }
-
-        .nav-links {
-            list-style: none;
+        .navbar ul {
+            list-style-type: none;
             display: flex;
-            gap: 20px;
         }
 
-        /* Container styling */
-        .container {
-            background-color: #1b1b1b; /* Dark background to match theme */
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-            max-width: 800px;
-            width: 100%;
-            margin-top: 100px; /* Space for fixed navbar */
+        .navbar ul li {
+            margin: 0 20px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: #f1f1f1;
+            font-weight: 500;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            padding: 10px 20px;
+            border-radius: 20px;
+        }
+
+        .navbar ul li a:hover {
+            background-color: #27AE60; /* Darker green hover effect */
+            color: #000000; /* Black text on hover */
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 20px; /* Adjust this as needed */
+            border: 1px solid #f1f1f1; /* Optional: For visual separation */
+            margin-top: 60px; /* Space for fixed navbar */
+        }
+
+        /* About Section */
+        #about {
             text-align: center;
         }
 
-        .container h2 {
-            font-family: 'Poppins', sans-serif;
+        #about h2 {
+            font-family: 'Playfair Display', serif;
             font-size: 3rem;
-            color: #4CAF50; /* Green title */
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            color: #2ECC71; /* Green title */
             margin-bottom: 20px;
         }
 
-        .container p {
+        #about p {
             font-size: 1.2rem;
             color: #f1f1f1;
-            line-height: 1.8;
-        }
-
-        /* Page navigation for About Us */
-        .page-nav {
-            margin-top: 40px;
-            text-align: center;
-        }
-
-        .page-nav a {
-            margin: 0 15px;
-            color: #4CAF50;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.2rem; /* Uniform size for page navigation */
-        }
-
-        .page-nav a:hover {
-            text-decoration: underline;
+            line-height: 1.6;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-
     <!-- Navigation Bar -->
     <nav class="navbar">
-        <div class="nav-brand">
-            <a href="/">FoodFinder</a>
-        </div>
-        <ul class="nav-links">
-            <li><a href="/">Home</a></li>
-            <li><a href="/map/">Map</a></li>
-            <li><a href="/contact/">Contact</a></li>
-            <li><a href="/about/">About</a></li>
+        <ul>
+            <li><a href="http://127.0.0.1:8000/">Home</a></li>
+            <li><a href="http://127.0.0.1:8000/about/">About</a></li>
+            <li><a href="http://127.0.0.1:8000/map/">Explore Now</a></li>
+            <li><a href="http://127.0.0.1:8000/register/">Register</a></li>
+            <li><a href="http://127.0.0.1:8000/contact/">Contact</a></li>
+            <li><a href="http://127.0.0.1:8000/favorites/">Favorites</a></li>
         </ul>
     </nav>
 
-    <!-- About Us content -->
-    <div class="container">
+    <!-- About Section -->
+    <section id="about">
         <h2>About Us</h2>
-        <p>
-            The Atlanta Food Finder is an innovative platform designed to connect food enthusiasts with the diverse culinary offerings of Atlanta.
-            Our platform aims to simplify the process of discovering restaurants by providing an interactive map that showcases dining spots
-            and your local favorites. With user-friendly features, the Atlanta Food Finder enables users to explore, review, and navigate
-            to their next dining adventure, fostering a vibrant community of food lovers.
-        </p>
-
-        <!-- Additional Navigation Links within the page -->
-        <div class="page-nav">
-            <a href="{% url 'restaurant-list' %}">See All Restaurants</a>
-            <a href="{% url 'register' %}">Create an Account</a>
-            <a href="{% url 'contact' %}">Contact Us</a>
-        </div>
-    </div>
+        <p>Welcome to Atlanta Food Finder! Our mission is to help you discover the best dining experiences in Atlanta. We curate a selection of restaurants to suit every taste, making it easy for you to find your next meal.</p>
+    </section>
 
 </body>
 </html>
