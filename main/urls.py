@@ -16,6 +16,5 @@ urlpatterns = [
     path('fetch-restaurants/', views.fetch_restaurants, name='fetch-restaurants'),
     path('map/', views.restaurant_map, name='restaurant-map'),
     path('add_favorite/<int:restaurant_id>/', views.add_favorite, name='add_favorite'),
-    path('remove_favorite/<int:restaurant_id>/', views.remove_favorite, name='remove_favorite'),
-    path('logout/', LogoutView.as_view(next_page='/login/'), name='logout'),
+    path('remove_favorite/<int:restaurant_id>/', views.remove_favorite, name='remove_favorite')
 ]

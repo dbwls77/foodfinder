@@ -30,32 +30,42 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                // Get the user's coordinates
-                var latitude = position.coords.latitude;
-                var longitude = position.coords.longitude;
+        var form = document.getElementById('search-form');
 
-                // Create hidden input fields to include the latitude and longitude in the form
-                var form = document.getElementById('search-form');
+        // Intercept the form submission
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
 
-                var latInput = document.createElement('input');
-                latInput.type = 'hidden';
-                latInput.name = 'latitude';
-                latInput.value = latitude;
-                form.appendChild(latInput);
+            // Check if geolocation is supported
+            if (navigator.geolocation) {
+                // Get the user's location
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var latitude = position.coords.latitude;
+                    var longitude = position.coords.longitude;
 
-                var lonInput = document.createElement('input');
-                lonInput.type = 'hidden';
-                lonInput.name = 'longitude';
-                lonInput.value = longitude;
-                form.appendChild(lonInput);
-            }, function(error) {
-                console.error('Error getting location:', error);
-            });
-        } else {
-            alert('Geolocation is not supported by this browser.');
-        }
+                    // Create hidden input fields for latitude and longitude
+                    var latInput = document.createElement('input');
+                    latInput.type = 'hidden';
+                    latInput.name = 'latitude';
+                    latInput.value = latitude;
+                    form.appendChild(latInput);
+
+                    var lonInput = document.createElement('input');
+                    lonInput.type = 'hidden';
+                    lonInput.name = 'longitude';
+                    lonInput.value = longitude;
+                    form.appendChild(lonInput);
+
+                    // Now that latitude and longitude are added, submit the form
+                    form.submit();
+                }, function(error) {
+                    console.error('Error getting location:', error);
+                    alert('Could not get your location. Please try again.');
+                });
+            } else {
+                alert('Geolocation is not supported by this browser.');
+            }
+        });
     });
     </script>
 </body>

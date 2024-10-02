@@ -11,5 +11,12 @@ class Restaurant(models.Model):
     address = models.CharField(max_length=255)
     favorites = models.ManyToManyField(User, related_name='favorite_restaurants', blank=True)
 
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['name', 'latitude', 'longitude'], name='unique_restaurant')
+        ]
+
     def __str__(self):
-        return self.name
+        return self.name if self.name else "Unknown"
+
+    
