@@ -126,6 +126,8 @@
             // Log latitude and longitude for debugging
             console.log(`Restaurant: ${restaurant.name}`);
             console.log(`Latitude: ${lat}, Longitude: ${lng}`);
+            console.log("Restaurant object: ", restaurant);
+
 
             var marker = new google.maps.Marker({
                 position: { lat: lat, lng: lng },
@@ -141,7 +143,7 @@
                 // Accessing restaurant details
                 const restaurantDetails = {
                     name: restaurant.name,
-                    rating: restaurant.rating,
+                    rating: restaurant.rating || 'Not Rated' // Fallback message if rating is missing
                 };
 
                 // Use Geocoding API to get the address based on lat/lng
@@ -191,9 +193,9 @@
 
         function initMap() {
             // Center map on Atlanta (adjust coordinates as needed)
-            const atlanta = { lat: 33.7490, lng: -84.3880 };
+            const atlanta = { lat: 33.785, lng: -84.3880 };
             const map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 13,
+                zoom: 12,
                 center: atlanta,
             });
 
@@ -205,6 +207,9 @@
                 "Restaurant 1", // Replace with actual names you want to exclude
                 "Restaurant 2",
                 "Ruth's Chris Steak House",
+                "Eddie's Attic",
+                "LEON's Full Service",
+                "Paschal's Restaurant & Bar",
                 // Add more restaurant names as needed
             ];
 
@@ -224,8 +229,6 @@
             });
         }
     </script>
-
-
 
 </head>
 <body onload="initMap()">

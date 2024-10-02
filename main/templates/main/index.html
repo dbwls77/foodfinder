@@ -134,6 +134,17 @@
             // Initialize your map here
         }
     </script>
+
+    <script>
+        function initializeSearchUI() {
+            // Your code to initialize the search UI goes here
+            console.log("Search UI initialized");
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            initializeSearchUI(); // Ensure it runs on every load
+        });
+    </script>
 </head>
 <body onload="initMap()">
     <!-- Navigation Bar -->
@@ -147,7 +158,7 @@
             <li><a href="http://127.0.0.1:8000/favorites/">Profile</a></li>
             <li><a href="http://127.0.0.1:8000/login/">Logout</a></li>
         </ul>
-        <a href="http://127.0.0.1:8000/search/" class="cta">Search</a>
+        <a href="http://127.0.0.1:8000/restaurants/" class="cta">Search</a>
     </nav>
 
     <!-- Hero Section -->

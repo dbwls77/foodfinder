@@ -72,7 +72,6 @@
         .hero {
             height: 80vh;
             background-color: rgba(46, 204, 113, 0.8);
-            background-image: url('your-hero-image.jpg'); /* Add your hero image here */
             background-size: cover;
             background-position: center;
             display: flex;
@@ -149,6 +148,7 @@
             width: 30%;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
             transition: transform 0.3s ease;
+            position: relative;
         }
 
         .service:hover {
@@ -163,6 +163,21 @@
 
         .service p {
             font-size: 1rem;
+        }
+
+        .get-directions-btn, .find-restaurants-btn {
+            padding: 15px 30px;
+            background-color: #2ECC71;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px; /* Adds space above the button */
+        }
+
+        .get-directions-btn:hover, .find-restaurants-btn:hover {
+            background-color: #27AE60;
         }
 
         /* Footer Styling */
@@ -211,6 +226,7 @@
         <div class="service">
             <h3>Find Restaurants</h3>
             <p>Use our map feature to explore nearby restaurants and hidden gems in Atlanta.</p>
+            <button class="find-restaurants-btn" onclick="window.location.href='/map/';">View Map</button>
         </div>
         <div class="service">
             <h3>Read Reviews</h3>
@@ -219,8 +235,10 @@
         <div class="service">
             <h3>Get Directions</h3>
             <p>Find the quickest route to your next meal with our integrated Google Maps feature.</p>
+            <button class="get-directions-btn" onclick="window.open('https://www.google.com/maps', '_blank');">Get Directions</button>
         </div>
     </section>
-
 </body>
 </html>
+
+

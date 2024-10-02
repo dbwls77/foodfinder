@@ -87,11 +87,11 @@ def remove_favorite(request, restaurant_id):
 
 def restaurant_search(request):
     form = RestaurantSearchForm(request.GET or None)
-    restaurants = Restaurant.objects.all().distinct()
+    restaurants = Restaurant.objects.all()
 
     # Get user's latitude and longitude from the request if available
-    user_latitude = request.GET.get('latitude', None)
-    user_longitude = request.GET.get('longitude', None)
+    user_latitude = 33.7756
+    user_longitude = 84.3963
 
     if user_latitude is not None and user_longitude is not None:
         try:
@@ -103,24 +103,23 @@ def restaurant_search(request):
 
     if form.is_valid():
         name = form.cleaned_data.get('name')
-        cuisine_type = form.cleaned_data.get('cuisine_type')
+        # cuisine_type = form.cleaned_data.get('cuisine_type')
 
         if name:
-            restaurants = restaurants.filter(name__icontains=name)
-        if cuisine_type:
-            restaurants = restaurants.filter(cuisine_type__icontains=cuisine_type)
+            restaurants = restaurants.filter(name__startswith=name)
+        # if cuisine_type:
+        #     restaurants = restaurants.filter(cuisine_type__icontains=cuisine_type)
 
     restaurant_data = []
+    print(f"User Latitude: {user_latitude}, User Longitude: {user_longitude}")
     for restaurant in restaurants:
-        distance = None
-        if user_latitude is not None and user_longitude is not None:
-            if restaurant.latitude is not None and restaurant.longitude is not None:
-                distance = get_distance(
-                    user_latitude,
-                    user_longitude,
-                    float(restaurant.latitude),
-                    float(restaurant.longitude)
-                )
+        print(f"Restaurant: {restaurant.name}, Latitude: {restaurant.latitude}, Longitude: {restaurant.longitude}")
+        distance = get_distance(
+            user_latitude,
+            user_longitude,
+            float(restaurant.latitude),
+            float(restaurant.longitude)
+        )
 
         restaurant_data.append({
             'restaurant': restaurant,
@@ -154,16 +153,19 @@ from django.shortcuts import render
 from .models import Restaurant
 def restaurant_list(request):
     query = request.GET.get('q', '')  # Search term
-    cuisine = request.GET.get('cuisine', '')  # Cuisine filter
+    # cuisine = request.GET.get('cuisine', '')  # Cuisine filter
     min_rating = request.GET.get('min_rating', 0)  # Minimum rating filter
     # Filter restaurants based on the query parameters
     restaurants = Restaurant.objects.all()
+    restaurants = restaurants.exclude(name="Restaurant 1")
+    restaurants = restaurants.exclude(name="Restaurant 2")    
     if query:
         restaurants = restaurants.filter(name__icontains=query)
-    if cuisine:
-        restaurants = restaurants.filter(cuisine_type__icontains=cuisine)
+    # if cuisine:
+    #     restaurants = restaurants.filter(cuisine_type__icontains=cuisine)
     if min_rating:
         restaurants = restaurants.filter(rating__gte=min_rating)
+
     return render(request, 'main/restaurant_list.html', {'restaurants': restaurants})
 
 def restaurant_map(request):
@@ -177,6 +179,7 @@ def restaurant_map(request):
             "cuisine_type": restaurant.cuisine_type,
             "latitude": float(restaurant.latitude),  # Ensure latitude is a float
             "longitude": float(restaurant.longitude),  # Ensure longitude is a float
+            "rating": float(restaurant.rating) if restaurant.rating is not None else None,  # Add the rating            
             # Add any other fields as necessary
         }
         restaurant_data.append(restaurant_info)

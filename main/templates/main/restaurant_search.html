@@ -16,12 +16,17 @@
         {% for data in restaurant_data %}
             <div>
                 <h3>{{ data.restaurant.name }}</h3>
-                <p>Cuisine: {{ data.restaurant.cuisine_type }}</p>
+                <!-- <p>Cuisine: {{ data.restaurant.cuisine_type }}</p> -->
                 {% if data.distance %}
                     <p>Distance: {{ data.distance|floatformat:2 }} miles</p>
                 {% else %}
-                    <p>Distance: Unknown</p>
+                    <p>{data.distance}</p>
                 {% endif %}
+                <p>
+                    <a href="https://www.google.com/maps/search/?api=1&query={{ data.restaurant.latitude }},{{ data.restaurant.longitude }}" target="_blank">
+                        View on Google Maps
+                    </a>
+                </p>
             </div>
         {% endfor %}
     {% else %}

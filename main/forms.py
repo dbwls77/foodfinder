@@ -13,6 +13,6 @@ class UserRegisterForm(UserCreationForm):
 
 class RestaurantSearchForm(forms.Form):
     name = forms.CharField(required=False, label='Restaurant Name', max_length=100)
-    cuisine_type = forms.CharField(required=False, label='Cuisine Type', max_length=100)
+    # cuisine_type = forms.CharField(required=False, label='Cuisine Type', max_length=100)
     rating = forms.DecimalField(required=False, min_value=0, max_value=5, label='Minimum Rating')
     max_distance = forms.FloatField(required=False, label='Maximum Distance')
