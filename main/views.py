@@ -7,7 +7,7 @@ from .models import Restaurant
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
 
-<<<<<<< HEAD
+
 def get_distance(lat1, lon1, lat2, lon2):
     """Calculate the distance between two points using the Haversine formula."""
     R = 3958.8  # Radius of the Earth in miles
@@ -26,8 +26,6 @@ def get_distance(lat1, lon1, lat2, lon2):
 
     distance = R * c  # Distance in miles
     return distance
-=======
->>>>>>> e6aa7d4d5e58bdd1dccd0d11a24dc35ac69338ce
 
 class CustomLoginView(LoginView):
     template_name = 'main/login.html'  # Use your login template
