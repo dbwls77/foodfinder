@@ -87,7 +87,7 @@ def remove_favorite(request, restaurant_id):
 
 def restaurant_search(request):
     form = RestaurantSearchForm(request.GET or None)
-    restaurants = Restaurant.objects.all()
+    restaurants = Restaurant.objects.all().distinct()
 
     # Get user's latitude and longitude from the request if available
     user_latitude = request.GET.get('latitude', None)
@@ -139,6 +139,7 @@ def restaurant_search(request):
     }
 
     return render(request, 'main/restaurant_search.html', context)
+
 
 def fetch_restaurants(request):
     restaurants = Restaurant.objects.all()
