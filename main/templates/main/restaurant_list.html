@@ -152,7 +152,7 @@
             <!-- <input type="text" name="cuisine" placeholder="Filter by cuisine" value="{{ request.GET.cuisine }}"> -->
             <label for="min_rating" style="display: none;">Minimum Rating:</label>
             <input type="number" name="min_rating" min="0" max="5" step="0.1" placeholder="Min Rating" value="{{ request.GET.min_rating }}">
-            <button type="submit">Search</button>
+            <button type="submit" id="sumbit_button">Search</button>
         </form>
 
         <!-- Display Results -->
@@ -162,15 +162,38 @@
                 <li>
                     <strong>{{ restaurant.name }}</strong> ({{ restaurant.cuisine_type }})<br>
                     <p>Rating: {{ restaurant.rating }} / 5</p>
-                    <p>Latitude: {{ restaurant.latitude }} | Longitude: {{ restaurant.longitude }}</p>
-                    <p>Distance: {{ restaurant.distance }} miles</p>
+                    <p id="latitude">Latitude: {{ restaurant.latitude }}</p>
+                    <p id="longitude">Longitude: {{ restaurant.longitude }}</p>
+                    <p id="distance">Distance: </p>
                 </li>
             {% empty %}
                 <li class="no-results">No restaurants found.</li>
             {% endfor %}
         </ul>
     </div>
-
+    <script type="text/javascript">
+        function get_distance(lat, long) {
+            return Math.sqrt(lat * lat + long * long); // Your distance formula
+        }
+    
+        var latitudeElements = document.querySelectorAll('#latitude');
+        var longitudeElements = document.querySelectorAll('#longitude');
+        var distanceElements = document.querySelectorAll('#distance');
+        var submit_button = document.getElementById('#sumbit_button');
+    
+        submit_button.onclick = function(event) {
+            event.preventDefault();
+    
+            latitudeElements.forEach((latitude, index) => {
+                var latValue = parseFloat(latitude.textContent.split(': ')[1]);
+                var longValue = parseFloat(longitudeElements[index].textContent.split(': ')[1]);
+                var distanceValue = get_distance(latValue, longValue);
+    
+                // Update the distance element with the result of the function
+                distanceElements[index].textContent = 'Distance: ' + distanceValue.toFixed(2) + ' miles'; // Updated distance output
+            });
+        };
+    </script>
 </body>
 </html>
 

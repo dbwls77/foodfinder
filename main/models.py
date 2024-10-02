@@ -7,7 +7,7 @@ class Restaurant(models.Model):
     latitude = models.FloatField()
     longitude = models.FloatField()
     rating = models.DecimalField(max_digits=3, decimal_places=2)
-    distance = models.FloatField()
+    distance = models.FloatField(default=15.0)
     address = models.CharField(max_length=255)
     favorites = models.ManyToManyField(User, related_name='favorite_restaurants', blank=True)
 
