@@ -31,4 +31,12 @@ https://sites.google.com/view/team45project1/home
 
 https://github.com/dbwls77/foodfinder
 
+## Figma 
+
+https://www.figma.com/board/zHwDg4XK4ovlG67wwTM97y/planning?node-id=0-1&node-type=canvas&t=Grvh6R2tLUu6NGOO-0
+
+# Jira 
+
+
+
 
