@@ -148,6 +148,23 @@ def restaurant_list(request):
     restaurants = Restaurant.objects.all()
     return render(request, 'main/restaurant_list.html', {'restaurants': restaurants})
 
+# main/views.py
+from django.shortcuts import render
+from .models import Restaurant
+def restaurant_list(request):
+    query = request.GET.get('q', '')  # Search term
+    cuisine = request.GET.get('cuisine', '')  # Cuisine filter
+    min_rating = request.GET.get('min_rating', 0)  # Minimum rating filter
+    # Filter restaurants based on the query parameters
+    restaurants = Restaurant.objects.all()
+    if query:
+        restaurants = restaurants.filter(name__icontains=query)
+    if cuisine:
+        restaurants = restaurants.filter(cuisine_type__icontains=cuisine)
+    if min_rating:
+        restaurants = restaurants.filter(rating__gte=min_rating)
+    return render(request, 'main/restaurant_list.html', {'restaurants': restaurants})
+
 def restaurant_map(request):
     restaurants = Restaurant.objects.all()
 
